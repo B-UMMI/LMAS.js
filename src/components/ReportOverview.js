@@ -39,179 +39,179 @@ import { withStyles } from "@material-ui/core/styles";
 // Plotly.js
 import Plot from "react-plotly.js";
 
-const createData2 = (
-  assembler,
-  contigs,
-  bps,
-  n50,
-  maxContig,
-  contigsPer,
-  bpsPer,
-  n50Per,
-  mappedContigs,
-  mappedBp,
-  mappedReads
-) => {
-  return {
-    assembler,
-    contigs,
-    bps,
-    n50,
-    maxContig,
-    contigsPer,
-    bpsPer,
-    n50Per,
-    mappedContigs,
-    mappedBp,
-    mappedReads,
-  };
-};
+// const createData2 = (
+//   assembler,
+//   contigs,
+//   bps,
+//   n50,
+//   maxContig,
+//   contigsPer,
+//   bpsPer,
+//   n50Per,
+//   mappedContigs,
+//   mappedBp,
+//   mappedReads
+// ) => {
+//   return {
+//     assembler,
+//     contigs,
+//     bps,
+//     n50,
+//     maxContig,
+//     contigsPer,
+//     bpsPer,
+//     n50Per,
+//     mappedContigs,
+//     mappedBp,
+//     mappedReads,
+//   };
+// };
 
-const rows2 = [
-  createData2(
-    "BCALM2",
-    415215,
-    52401843,
-    255,
-    9342,
-    "5865 (1,41%)",
-    "9824640 (18.75%)",
-    1665,
-    "5825 (99.06%)",
-    "9763170 (99.22%)",
-    23.3
-  ),
-  createData2(
-    "GATBMiniaPipeline",
-    415215,
-    52401843,
-    255,
-    9342,
-    "5865 (1,41%)",
-    "9824640 (18.75%)",
-    1665,
-    "5825 (99.06%)",
-    "9763170 (99.22%)",
-    23.3
-  ),
-  createData2(
-    "IDBA-UD",
-    415215,
-    52401843,
-    255,
-    9342,
-    "5865 (1,41%)",
-    "9824640 (18.75%)",
-    1665,
-    "5825 (99.06%)",
-    "9763170 (99.22%)",
-    23.3
-  ),
-  createData2(
-    "MEGAHIT",
-    415215,
-    52401843,
-    255,
-    9342,
-    "5865 (1,41%)",
-    "9824640 (18.75%)",
-    1665,
-    "5825 (99.06%)",
-    "9763170 (99.22%)",
-    23.3
-  ),
-  createData2(
-    "metaSPAdes",
-    415215,
-    52401843,
-    255,
-    9342,
-    "5865 (1,41%)",
-    "9824640 (18.75%)",
-    1665,
-    "5825 (99.06%)",
-    "9763170 (99.22%)",
-    23.3
-  ),
-  createData2(
-    "minia",
-    415215,
-    52401843,
-    255,
-    9342,
-    "5865 (1,41%)",
-    "9824640 (18.75%)",
-    1665,
-    "5825 (99.06%)",
-    "9763170 (99.22%)",
-    23.3
-  ),
-  createData2(
-    "PANDAseq",
-    415215,
-    52401843,
-    255,
-    9342,
-    "5865 (1,41%)",
-    "9824640 (18.75%)",
-    1665,
-    "5825 (99.06%)",
-    "9763170 (99.22%)",
-    23.3
-  ),
-  createData2(
-    "SKESA",
-    415215,
-    52401843,
-    255,
-    9342,
-    "5865 (1,41%)",
-    "9824640 (18.75%)",
-    1665,
-    "5825 (99.06%)",
-    "9763170 (99.22%)",
-    23.3
-  ),
-  createData2(
-    "SPAdes",
-    415215,
-    52401843,
-    255,
-    9342,
-    "5865 (1,41%)",
-    "9824640 (18.75%)",
-    1665,
-    "5825 (99.06%)",
-    "9763170 (99.22%)",
-    23.3
-  ),
-  createData2(
-    "unicycler",
-    415215,
-    52401843,
-    255,
-    9342,
-    "5865 (1,41%)",
-    "9824640 (18.75%)",
-    1665,
-    "5825 (99.06%)",
-    "9763170 (99.22%)",
-    23.3
-  ),
-  createData2(
-    "VelvetOptimizer",
-    415215,
-    52401843,
-    255,
-    9342,
-    "5865 (1,41%)",
-    "9824640 (18.75%)",
-    1665,
-    "5825 (99.06%)",
-    "9763170 (99.22%)",
-    23.3
-  ),
-];
+// const rows2 = [
+//   createData2(
+//     "BCALM2",
+//     415215,
+//     52401843,
+//     255,
+//     9342,
+//     "5865 (1,41%)",
+//     "9824640 (18.75%)",
+//     1665,
+//     "5825 (99.06%)",
+//     "9763170 (99.22%)",
+//     23.3
+//   ),
+//   createData2(
+//     "GATBMiniaPipeline",
+//     415215,
+//     52401843,
+//     255,
+//     9342,
+//     "5865 (1,41%)",
+//     "9824640 (18.75%)",
+//     1665,
+//     "5825 (99.06%)",
+//     "9763170 (99.22%)",
+//     23.3
+//   ),
+//   createData2(
+//     "IDBA-UD",
+//     415215,
+//     52401843,
+//     255,
+//     9342,
+//     "5865 (1,41%)",
+//     "9824640 (18.75%)",
+//     1665,
+//     "5825 (99.06%)",
+//     "9763170 (99.22%)",
+//     23.3
+//   ),
+//   createData2(
+//     "MEGAHIT",
+//     415215,
+//     52401843,
+//     255,
+//     9342,
+//     "5865 (1,41%)",
+//     "9824640 (18.75%)",
+//     1665,
+//     "5825 (99.06%)",
+//     "9763170 (99.22%)",
+//     23.3
+//   ),
+//   createData2(
+//     "metaSPAdes",
+//     415215,
+//     52401843,
+//     255,
+//     9342,
+//     "5865 (1,41%)",
+//     "9824640 (18.75%)",
+//     1665,
+//     "5825 (99.06%)",
+//     "9763170 (99.22%)",
+//     23.3
+//   ),
+//   createData2(
+//     "minia",
+//     415215,
+//     52401843,
+//     255,
+//     9342,
+//     "5865 (1,41%)",
+//     "9824640 (18.75%)",
+//     1665,
+//     "5825 (99.06%)",
+//     "9763170 (99.22%)",
+//     23.3
+//   ),
+//   createData2(
+//     "PANDAseq",
+//     415215,
+//     52401843,
+//     255,
+//     9342,
+//     "5865 (1,41%)",
+//     "9824640 (18.75%)",
+//     1665,
+//     "5825 (99.06%)",
+//     "9763170 (99.22%)",
+//     23.3
+//   ),
+//   createData2(
+//     "SKESA",
+//     415215,
+//     52401843,
+//     255,
+//     9342,
+//     "5865 (1,41%)",
+//     "9824640 (18.75%)",
+//     1665,
+//     "5825 (99.06%)",
+//     "9763170 (99.22%)",
+//     23.3
+//   ),
+//   createData2(
+//     "SPAdes",
+//     415215,
+//     52401843,
+//     255,
+//     9342,
+//     "5865 (1,41%)",
+//     "9824640 (18.75%)",
+//     1665,
+//     "5825 (99.06%)",
+//     "9763170 (99.22%)",
+//     23.3
+//   ),
+//   createData2(
+//     "unicycler",
+//     415215,
+//     52401843,
+//     255,
+//     9342,
+//     "5865 (1,41%)",
+//     "9824640 (18.75%)",
+//     1665,
+//     "5825 (99.06%)",
+//     "9763170 (99.22%)",
+//     23.3
+//   ),
+//   createData2(
+//     "VelvetOptimizer",
+//     415215,
+//     52401843,
+//     255,
+//     9342,
+//     "5865 (1,41%)",
+//     "9824640 (18.75%)",
+//     1665,
+//     "5825 (99.06%)",
+//     "9763170 (99.22%)",
+//     23.3
+//   ),
+// ];
 
 const createData3 = (
   reference,
@@ -287,20 +287,19 @@ const muiClasses = (theme) => ({
   },
 });
 
-const samples_ids = ["sample_id_1", "sample_id_2", "sample_id_3"];
-
 class ReportOverview extends Component {
   state = {
     tabValue: 0,
-    buttonOption: samples_ids[0],
+    buttonOption: _sampleList[0],
     dropdownOption: "Global",
     overviewData: _assemblerPerformanceData,
+    referenceData: _referenceData,
+    mainData: _mainData,
   };
 
   plotChangeHandler = (event, value) => {
     console.log(event.target.innerHTML);
     this.setState({ buttonOption: event.target.innerHTML });
-    // this.setState({ tabValue: value });
   };
 
   handleChange = (event) => {
@@ -310,53 +309,6 @@ class ReportOverview extends Component {
 
   render() {
     const { classes } = this.props;
-
-    // const overviewTable = (
-    //   <TableContainer component={Paper}>
-    //     <Table
-    //       className={classes.table}
-    //       size="small"
-    //       aria-label="a dense table"
-    //     >
-    //       <TableHead>
-    //         <TableRow>
-    //           <TableCell>
-    //             <b>Assembler</b>
-    //           </TableCell>
-    //           <TableCell>
-    //             <b>Avg Time</b>
-    //           </TableCell>
-    //           <TableCell>
-    //             <b>CPU/Hour</b>
-    //           </TableCell>
-    //           <TableCell>
-    //             <b>Max Memory (GB)</b>
-    //           </TableCell>
-    //           <TableCell>
-    //             <b>Average Read (GB)</b>
-    //           </TableCell>
-    //           <TableCell>
-    //             <b>Average Write (GB)</b>
-    //           </TableCell>
-    //         </TableRow>
-    //       </TableHead>
-    //       <TableBody>
-    //         {this.state.overviewData.map((row) => (
-    //           <TableRow key={row.assembler}>
-    //             <TableCell component="th" scope="row">
-    //               {row.assembler}
-    //             </TableCell>
-    //             <TableCell align="right">{row.avgTime}</TableCell>
-    //             <TableCell align="right">{row.cpus}</TableCell>
-    //             <TableCell align="right">{row.max_rss}</TableCell>
-    //             <TableCell align="right">{row.avgRead}</TableCell>
-    //             <TableCell align="right">{row.avgWrite}</TableCell>
-    //           </TableRow>
-    //         ))}
-    //       </TableBody>
-    //     </Table>
-    //   </TableContainer>
-    // );
 
     const overviewColumns = [
       {
@@ -413,15 +365,15 @@ class ReportOverview extends Component {
               <TableCell rowSpan={2}>
                 <b>Assembler</b>
               </TableCell>
-              <TableCell colSpan={4} align="center">
+              <TableCell colSpan={5} align="center">
                 <b>Original Assembly</b>
               </TableCell>
               <TableCell
-                colSpan={6}
+                colSpan={4}
                 align="center"
                 style={{ borderLeft: "1px solid rgba(224, 224, 224, 1)" }}
               >
-                <b>Contigs > 1000bp</b>
+                <b>Contigs > {_minContigSize}</b>
               </TableCell>
             </TableRow>
             <TableRow>
@@ -429,50 +381,45 @@ class ReportOverview extends Component {
                 <b>Contigs</b>
               </TableCell>
               <TableCell align="center">
-                <b>basepairs</b>
+                <b>Basepairs</b>
               </TableCell>
               <TableCell align="center">
-                <b>n50</b>
+                <b>Max contig size</b>
               </TableCell>
               <TableCell align="center">
-                <b>max contig size</b>
+                <b>N50</b>
               </TableCell>
               <TableCell align="center">
-                <b>Contigs (%)</b>
+                <b>Mapped reads</b>
               </TableCell>
               <TableCell align="center">
-                <b>basepairs (%)</b>
+                <b>Contigs</b>
               </TableCell>
               <TableCell align="center">
-                <b>n50 (%)</b>
+                <b>Basepairs</b>
               </TableCell>
               <TableCell align="center">
-                <b>mapped contigs (%)</b>
+                <b>N50</b>
               </TableCell>
-              <TableCell align="center">
-                <b>mapped bp (%)</b>
-              </TableCell>
-              <TableCell align="center">
-                <b>mapped reads (%)</b>
-              </TableCell>
+              {/* <TableCell align="center">
+                <b>Misassembled contigs</b>
+              </TableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows2.map((row) => (
+            {this.state.mainData.mockSample.GlobalTable.map((row) => (
               <TableRow key={row.assembler}>
                 <TableCell component="th" scope="row">
                   {row.assembler}
                 </TableCell>
-                <TableCell align="right">{row.contigs}</TableCell>
-                <TableCell align="right">{row.bps}</TableCell>
-                <TableCell align="right">{row.n50}</TableCell>
-                <TableCell align="right">{row.maxContig}</TableCell>
-                <TableCell align="right">{row.contigsPer}</TableCell>
-                <TableCell align="right">{row.bpsPer}</TableCell>
-                <TableCell align="right">{row.n50Per}</TableCell>
-                <TableCell align="right">{row.mappedContigs}</TableCell>
-                <TableCell align="right">{row.mappedBp}</TableCell>
-                <TableCell align="right">{row.mappedReads}</TableCell>
+                <TableCell align="right">{row.original.contigs}</TableCell>
+                <TableCell align="right">{row.original.basepairs}</TableCell>
+                <TableCell align="right">{row.original.max_contig_size}</TableCell>
+                <TableCell align="right">{row.original.N50}</TableCell>
+                <TableCell align="right">{row.original.mapped_reads}</TableCell>
+                <TableCell align="right">{row.filtered.contigs}</TableCell>
+                <TableCell align="right">{row.filtered.basepairs}</TableCell>
+                <TableCell align="right">{row.filtered.N50}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -556,6 +503,8 @@ class ReportOverview extends Component {
       </div>
     );
 
+    const referenceFile = Object.keys(this.state.referenceData)[0]
+
     const accordion = (
       <div>
         <div style={{ marginTop: "20px" }}>
@@ -584,7 +533,7 @@ class ReportOverview extends Component {
                     </Typography>
                     <div style={{ marginTop: "5%" }}>
                       <Typography variant="h5">
-                        <b>References:</b> Zymos mock community
+                        <b>References:</b> {referenceFile}
                       </Typography>
                     </div>
                   </Grid>
@@ -610,7 +559,7 @@ class ReportOverview extends Component {
             className={classes.input}
           >
             <MenuItem value={"Global"}>Global</MenuItem>
-            {samples_ids.map((id) => (
+            {_sampleList.map((id) => (
               <MenuItem key={id} value={id}>
                 {id}
               </MenuItem>
@@ -687,7 +636,7 @@ class ReportOverview extends Component {
                 style={{ width: "100%", height: "100%" }}
               >
                 <div style={style.buttonBar}>
-                  {samples_ids.map((id) => (
+                  {_sampleList.map((id) => (
                     <Button
                       key={id}
                       style={style.button}
