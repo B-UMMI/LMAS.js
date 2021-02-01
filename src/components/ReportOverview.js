@@ -122,6 +122,7 @@ class ReportOverview extends Component {
     overviewData: _assemblerPerformanceData,
     referenceData: _referenceData,
     mainDataTables: _mainDataTables,
+    mainPlotData: _mainDataPlots,
   };
 
   plotChangeHandler = (event, value) => {
@@ -261,86 +262,6 @@ class ReportOverview extends Component {
       </TableContainer>
     );
 
-    const refComponent = (
-      <div style={{ marginTop: "20px" }}>
-        <Typography variant="h6" style={{ color: "#4A690C" }}>
-          {this.state.dropdownOption}
-        </Typography>
-        <Typography variant="subtitle1">
-          <b>Size:</b> lala
-        </Typography>
-        <Typography variant="subtitle1">
-          <b>%GC:</b> bubu
-        </Typography>
-        <div style={{ marginTop: "20px" }}>
-          <TableContainer component={Paper}>
-            <Table
-              className={classes.table}
-              size="small"
-              aria-label="a dense ref table"
-            >
-              <TableHead>
-                <TableRow>
-                  <TableCell>
-                    <b>Assembler</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>Contiguity</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>Multiplicity</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>Identity</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>Lowest Identity</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>Breadth of Coverage</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>L90</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>Aligned Contigs</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>NA50</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>NG50</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>Aligned Basepairs</b>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows3.map((row) => (
-                  <TableRow key={row.assembler}>
-                    <TableCell component="th" scope="row">
-                      {row.assembler}
-                    </TableCell>
-                    <TableCell align="right">{row.contiguity}</TableCell>
-                    <TableCell align="right">{row.multiplicity}</TableCell>
-                    <TableCell align="right">{row.identity}</TableCell>
-                    <TableCell align="right">{row.lowest_identity}</TableCell>
-                    <TableCell align="right">{row.breadth_of_coverage}</TableCell>
-                    <TableCell align="right">{row.L90}</TableCell>
-                    <TableCell align="right">{row.aligned_contigs}</TableCell>
-                    <TableCell align="right">{row.NA50}</TableCell>
-                    <TableCell align="right">{row.NG50}</TableCell>
-                    <TableCell align="right">{row.aligned_basepairs}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
-      </div>
-    );
-
     const accordion = (
       <div>
         <div style={{ marginTop: "20px" }}>
@@ -416,8 +337,8 @@ class ReportOverview extends Component {
         >
           <Grid item xs={6}>
             <Plot
-              data={mockGlobal.data}
-              layout={mockGlobal.layout}
+              data={this.state.mainPlotData.mockSample.PlotData[this.state.dropdownOption][0].data}
+              layout={this.state.mainPlotData.mockSample.PlotData[this.state.dropdownOption][0].layout}
               useResizeHandler={true}
               style={{ width: "100%", height: "100%" }}
               line={{
@@ -427,8 +348,8 @@ class ReportOverview extends Component {
           </Grid>
           <Grid item xs={6}>
             <Plot
-              data={mockStaph.data}
-              layout={mockStaph.layout}
+              data={this.state.mainPlotData.mockSample.PlotData[this.state.dropdownOption][1].data}
+              layout={this.state.mainPlotData.mockSample.PlotData[this.state.dropdownOption][1].layout}
               useResizeHandler={true}
               style={{ width: "100%", height: "100%" }}
               line={{
@@ -440,6 +361,20 @@ class ReportOverview extends Component {
       </div>
     );
 
+    const gridPlotWide = (
+      <div style={{ marginTop: "20px" }}>
+        <Plot
+          data={this.state.mainPlotData.mockSample.PlotData[this.state.dropdownOption][2].data}
+          layout={this.state.mainPlotData.mockSample.PlotData[this.state.dropdownOption][2].layout}
+          useResizeHandler={true}
+          style={{ width: "100%", height: "100%" }}
+          line={{
+            width: 1,
+          }}
+        />
+      </div>
+    );
+
     let testAccordionMain = <Aux>{dropdown}</Aux>;
 
     if (this.state.dropdownOption === "Global") {
@@ -448,16 +383,171 @@ class ReportOverview extends Component {
           {dropdown}
           <div style={{ marginTop: "20px" }}>{globalTable}</div>
           <div>{gridPlot}</div>
+          <div>{gridPlotWide}</div>
         </Aux>
       );
     }
 
     if (this.state.dropdownOption !== "Global") {
+
+      console.log(this.state.mainPlotData.mockSample.PlotData)
+
+      const refComponent = (
+        <div style={{ marginTop: "20px" }}>
+          <Typography variant="h6" style={{ color: "#4A690C" }}>
+            {this.state.dropdownOption}
+          </Typography>
+          <Typography variant="subtitle1">
+            <b>Size:</b> {this.state.referenceData[referenceFile][this.state.dropdownOption].size} Basepairs
+          </Typography>
+          <Typography variant="subtitle1">
+            <b>%GC:</b> {this.state.referenceData[referenceFile][this.state.dropdownOption].GC}
+          </Typography>
+          <div style={{ marginTop: "20px" }}>
+            <TableContainer component={Paper}>
+              <Table
+                className={classes.table}
+                size="small"
+                aria-label="a dense ref table"
+              >
+                <TableHead>
+                  <TableRow>
+                    <TableCell>
+                      <b>Assembler</b>
+                    </TableCell>
+                    <TableCell>
+                      <b>Contiguity</b>
+                    </TableCell>
+                    <TableCell>
+                      <b>Multiplicity</b>
+                    </TableCell>
+                    <TableCell>
+                      <b>Identity</b>
+                    </TableCell>
+                    <TableCell>
+                      <b>Lowest Identity</b>
+                    </TableCell>
+                    <TableCell>
+                      <b>Breadth of Coverage</b>
+                    </TableCell>
+                    <TableCell>
+                      <b>L90</b>
+                    </TableCell>
+                    <TableCell>
+                      <b>Aligned Contigs</b>
+                    </TableCell>
+                    <TableCell>
+                      <b>NA50</b>
+                    </TableCell>
+                    <TableCell>
+                      <b>NG50</b>
+                    </TableCell>
+                    <TableCell>
+                      <b>Aligned Basepairs</b>
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {this.state.mainDataTables.mockSample.ReferenceTables[this.state.dropdownOption][0].map((row) => (
+                    <TableRow key={row.assembler}>
+                      <TableCell component="th" scope="row">
+                        {row.assembler}
+                      </TableCell>
+                      <TableCell align="right">{row.contiguity}</TableCell>
+                      <TableCell align="right">{row.multiplicity}</TableCell>
+                      <TableCell align="right">{row.identity}</TableCell>
+                      <TableCell align="right">{row.lowest_identity}</TableCell>
+                      <TableCell align="right">{row.breadth_of_coverage}</TableCell>
+                      <TableCell align="right">{row.L90}</TableCell>
+                      <TableCell align="right">{row.aligned_contigs}</TableCell>
+                      <TableCell align="right">{row.NA50}</TableCell>
+                      <TableCell align="right">{row.NG50}</TableCell>
+                      <TableCell align="right">{row.aligned_basepairs}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+        </div>
+      );
+
+      const refGridPlot = (
+        <div style={{ marginTop: "60px" }}>
+          <Grid
+            container
+            spacing={3}
+            direction="row"
+            justify="center"
+            alignItems="center"
+          >
+            <Grid item xs={6}>
+              <Plot
+                data={this.state.mainPlotData.mockSample.PlotData[this.state.dropdownOption][0][0].data}
+                layout={this.state.mainPlotData.mockSample.PlotData[this.state.dropdownOption][0][0].layout}
+                useResizeHandler={true}
+                style={{ width: "100%", height: "100%" }}
+                line={{
+                  width: 1,
+                }}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <Plot
+                data={this.state.mainPlotData.mockSample.PlotData[this.state.dropdownOption][1][0].data}
+                layout={this.state.mainPlotData.mockSample.PlotData[this.state.dropdownOption][1][0].layout}
+                useResizeHandler={true}
+                style={{ width: "100%", height: "100%" }}
+                line={{
+                  width: 1,
+                }}
+              />
+            </Grid>
+          </Grid>
+        </div>
+      );
+
+      const refGridPlot2 = (
+        <div style={{ marginTop: "20px" }}>
+          <Grid
+            container
+            spacing={3}
+            direction="row"
+            justify="center"
+            alignItems="center"
+          >
+            <Grid item xs={6}>
+              <Plot
+                data={this.state.mainPlotData.mockSample.PlotData[this.state.dropdownOption][2][0].data}
+                layout={this.state.mainPlotData.mockSample.PlotData[this.state.dropdownOption][2][0].layout}
+                useResizeHandler={true}
+                style={{ width: "100%", height: "100%" }}
+                line={{
+                  width: 1,
+                }}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <Plot
+                data={this.state.mainPlotData.mockSample.PlotData[this.state.dropdownOption][3][0].data}
+                layout={this.state.mainPlotData.mockSample.PlotData[this.state.dropdownOption][3][0].layout}
+                useResizeHandler={true}
+                style={{ width: "100%", height: "100%" }}
+                line={{
+                  width: 1,
+                }}
+              />
+            </Grid>
+          </Grid>
+        </div>
+      );
+  
       testAccordionMain = (
         <Aux>
           {dropdown}
           <div>{refComponent}</div>
-          <div>{gridPlot}</div>
+          <div>{refGridPlot}</div>
+          <div>{refGridPlot2}</div>
         </Aux>
       );
     }
