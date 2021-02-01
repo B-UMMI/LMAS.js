@@ -39,179 +39,6 @@ import { withStyles } from "@material-ui/core/styles";
 // Plotly.js
 import Plot from "react-plotly.js";
 
-// const createData2 = (
-//   assembler,
-//   contigs,
-//   bps,
-//   n50,
-//   maxContig,
-//   contigsPer,
-//   bpsPer,
-//   n50Per,
-//   mappedContigs,
-//   mappedBp,
-//   mappedReads
-// ) => {
-//   return {
-//     assembler,
-//     contigs,
-//     bps,
-//     n50,
-//     maxContig,
-//     contigsPer,
-//     bpsPer,
-//     n50Per,
-//     mappedContigs,
-//     mappedBp,
-//     mappedReads,
-//   };
-// };
-
-// const rows2 = [
-//   createData2(
-//     "BCALM2",
-//     415215,
-//     52401843,
-//     255,
-//     9342,
-//     "5865 (1,41%)",
-//     "9824640 (18.75%)",
-//     1665,
-//     "5825 (99.06%)",
-//     "9763170 (99.22%)",
-//     23.3
-//   ),
-//   createData2(
-//     "GATBMiniaPipeline",
-//     415215,
-//     52401843,
-//     255,
-//     9342,
-//     "5865 (1,41%)",
-//     "9824640 (18.75%)",
-//     1665,
-//     "5825 (99.06%)",
-//     "9763170 (99.22%)",
-//     23.3
-//   ),
-//   createData2(
-//     "IDBA-UD",
-//     415215,
-//     52401843,
-//     255,
-//     9342,
-//     "5865 (1,41%)",
-//     "9824640 (18.75%)",
-//     1665,
-//     "5825 (99.06%)",
-//     "9763170 (99.22%)",
-//     23.3
-//   ),
-//   createData2(
-//     "MEGAHIT",
-//     415215,
-//     52401843,
-//     255,
-//     9342,
-//     "5865 (1,41%)",
-//     "9824640 (18.75%)",
-//     1665,
-//     "5825 (99.06%)",
-//     "9763170 (99.22%)",
-//     23.3
-//   ),
-//   createData2(
-//     "metaSPAdes",
-//     415215,
-//     52401843,
-//     255,
-//     9342,
-//     "5865 (1,41%)",
-//     "9824640 (18.75%)",
-//     1665,
-//     "5825 (99.06%)",
-//     "9763170 (99.22%)",
-//     23.3
-//   ),
-//   createData2(
-//     "minia",
-//     415215,
-//     52401843,
-//     255,
-//     9342,
-//     "5865 (1,41%)",
-//     "9824640 (18.75%)",
-//     1665,
-//     "5825 (99.06%)",
-//     "9763170 (99.22%)",
-//     23.3
-//   ),
-//   createData2(
-//     "PANDAseq",
-//     415215,
-//     52401843,
-//     255,
-//     9342,
-//     "5865 (1,41%)",
-//     "9824640 (18.75%)",
-//     1665,
-//     "5825 (99.06%)",
-//     "9763170 (99.22%)",
-//     23.3
-//   ),
-//   createData2(
-//     "SKESA",
-//     415215,
-//     52401843,
-//     255,
-//     9342,
-//     "5865 (1,41%)",
-//     "9824640 (18.75%)",
-//     1665,
-//     "5825 (99.06%)",
-//     "9763170 (99.22%)",
-//     23.3
-//   ),
-//   createData2(
-//     "SPAdes",
-//     415215,
-//     52401843,
-//     255,
-//     9342,
-//     "5865 (1,41%)",
-//     "9824640 (18.75%)",
-//     1665,
-//     "5825 (99.06%)",
-//     "9763170 (99.22%)",
-//     23.3
-//   ),
-//   createData2(
-//     "unicycler",
-//     415215,
-//     52401843,
-//     255,
-//     9342,
-//     "5865 (1,41%)",
-//     "9824640 (18.75%)",
-//     1665,
-//     "5825 (99.06%)",
-//     "9763170 (99.22%)",
-//     23.3
-//   ),
-//   createData2(
-//     "VelvetOptimizer",
-//     415215,
-//     52401843,
-//     255,
-//     9342,
-//     "5865 (1,41%)",
-//     "9824640 (18.75%)",
-//     1665,
-//     "5825 (99.06%)",
-//     "9763170 (99.22%)",
-//     23.3
-//   ),
-// ];
 
 const createData3 = (
   reference,
@@ -294,7 +121,7 @@ class ReportOverview extends Component {
     dropdownOption: "Global",
     overviewData: _assemblerPerformanceData,
     referenceData: _referenceData,
-    mainData: _mainData,
+    mainDataTables: _mainDataTables,
   };
 
   plotChangeHandler = (event, value) => {
@@ -303,12 +130,19 @@ class ReportOverview extends Component {
   };
 
   handleChange = (event) => {
+    console.log("handleChange")
+    console.log(event.target.value);
     console.log(this.state.dropdownOption);
+    
     this.setState({ dropdownOption: event.target.value });
+    console.log(this.state.dropdownOption);
   };
 
   render() {
     const { classes } = this.props;
+
+    const referenceFile = Object.keys(this.state.referenceData)[0]
+    const referenceNames = Object.keys(this.state.referenceData[referenceFile])
 
     const overviewColumns = [
       {
@@ -407,7 +241,7 @@ class ReportOverview extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {this.state.mainData.mockSample.GlobalTable.map((row) => (
+            {this.state.mainDataTables.mockSample.GlobalTable.map((row) => (
               <TableRow key={row.assembler}>
                 <TableCell component="th" scope="row">
                   {row.assembler}
@@ -433,10 +267,10 @@ class ReportOverview extends Component {
           {this.state.dropdownOption}
         </Typography>
         <Typography variant="subtitle1">
-          <b>Size:</b> Big
+          <b>Size:</b> lala
         </Typography>
         <Typography variant="subtitle1">
-          <b>%GC:</b> About Right
+          <b>%GC:</b> bubu
         </Typography>
         <div style={{ marginTop: "20px" }}>
           <TableContainer component={Paper}>
@@ -448,10 +282,13 @@ class ReportOverview extends Component {
               <TableHead>
                 <TableRow>
                   <TableCell>
-                    <b>Reference</b>
+                    <b>Assembler</b>
                   </TableCell>
                   <TableCell>
                     <b>Contiguity</b>
+                  </TableCell>
+                  <TableCell>
+                    <b>Multiplicity</b>
                   </TableCell>
                   <TableCell>
                     <b>Identity</b>
@@ -463,10 +300,7 @@ class ReportOverview extends Component {
                     <b>Breadth of Coverage</b>
                   </TableCell>
                   <TableCell>
-                    <b>C90</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>C95</b>
+                    <b>L90</b>
                   </TableCell>
                   <TableCell>
                     <b>Aligned Contigs</b>
@@ -475,25 +309,29 @@ class ReportOverview extends Component {
                     <b>NA50</b>
                   </TableCell>
                   <TableCell>
-                    <b>Aligned Bp</b>
+                    <b>NG50</b>
+                  </TableCell>
+                  <TableCell>
+                    <b>Aligned Basepairs</b>
                   </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {rows3.map((row) => (
-                  <TableRow key={row.reference}>
+                  <TableRow key={row.assembler}>
                     <TableCell component="th" scope="row">
-                      {row.reference}
+                      {row.assembler}
                     </TableCell>
                     <TableCell align="right">{row.contiguity}</TableCell>
+                    <TableCell align="right">{row.multiplicity}</TableCell>
                     <TableCell align="right">{row.identity}</TableCell>
-                    <TableCell align="right">{row.lIdentity}</TableCell>
-                    <TableCell align="right">{row.breadth}</TableCell>
-                    <TableCell align="right">{row.c90}</TableCell>
-                    <TableCell align="right">{row.c95}</TableCell>
-                    <TableCell align="right">{row.alignedC}</TableCell>
-                    <TableCell align="right">{row.na50}</TableCell>
-                    <TableCell align="right">{row.alignedBp}</TableCell>
+                    <TableCell align="right">{row.lowest_identity}</TableCell>
+                    <TableCell align="right">{row.breadth_of_coverage}</TableCell>
+                    <TableCell align="right">{row.L90}</TableCell>
+                    <TableCell align="right">{row.aligned_contigs}</TableCell>
+                    <TableCell align="right">{row.NA50}</TableCell>
+                    <TableCell align="right">{row.NG50}</TableCell>
+                    <TableCell align="right">{row.aligned_basepairs}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -502,8 +340,6 @@ class ReportOverview extends Component {
         </div>
       </div>
     );
-
-    const referenceFile = Object.keys(this.state.referenceData)[0]
 
     const accordion = (
       <div>
@@ -559,7 +395,7 @@ class ReportOverview extends Component {
             className={classes.input}
           >
             <MenuItem value={"Global"}>Global</MenuItem>
-            {_sampleList.map((id) => (
+            {referenceNames.map((id) => (
               <MenuItem key={id} value={id}>
                 {id}
               </MenuItem>
