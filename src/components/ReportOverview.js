@@ -131,12 +131,8 @@ class ReportOverview extends Component {
   };
 
   handleChange = (event) => {
-    console.log("handleChange")
     console.log(event.target.value);
-    console.log(this.state.dropdownOption);
-    
     this.setState({ dropdownOption: event.target.value });
-    console.log(this.state.dropdownOption);
   };
 
   render() {
@@ -295,7 +291,6 @@ class ReportOverview extends Component {
                     </div>
                   </Grid>
                   <Grid item xs>
-                    {/* {overviewTable} */}
                     {testDataGrid}
                   </Grid>
                 </Grid>
@@ -389,8 +384,6 @@ class ReportOverview extends Component {
     }
 
     if (this.state.dropdownOption !== "Global") {
-
-      console.log(this.state.mainPlotData.mockSample.PlotData)
 
       const refComponent = (
         <div style={{ marginTop: "20px" }}>
@@ -574,17 +567,6 @@ class ReportOverview extends Component {
                       {id}
                     </Button>
                   ))}
-                  {/* <Button
-                    style={style.button}
-                    className={`${
-                      this.state.tabValue === 0 && classesRE.tabButton
-                    }`}
-                    onClick={(e) => {
-                      this.plotChangeHandler(e, 0);
-                    }}
-                  >
-                    sample_id_1
-                  </Button> */}
                 </div>
                 {this.state.tabValue === 0 && testAccordionMain}
               </div>
