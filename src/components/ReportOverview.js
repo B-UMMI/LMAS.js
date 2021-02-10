@@ -96,7 +96,7 @@ class ReportOverview extends Component {
   };
 
   render() {
-    
+
     const { classes } = this.props;
 
     const referenceFile = Object.keys(this.state.referenceData)[0]
@@ -147,11 +147,11 @@ class ReportOverview extends Component {
 
     const globalTable = (
       <TableContainer component={Paper}>
-      <div style={{ marginTop: "20px" }}>
-        <Typography  variant="h5" align='center' style={{ color: "#4A690C" }}>
-              <b>{this.state.buttonOption}</b>
-        </Typography>
-      </div>
+        <div style={{ marginTop: "20px" }}>
+          <Typography variant="h5" align='center' style={{ color: "#4A690C" }}>
+            <b>{this.state.buttonOption}</b>
+          </Typography>
+        </div>
         <Table
           className={classes.table}
           size="small"
@@ -213,7 +213,7 @@ class ReportOverview extends Component {
                 <TableCell align="right">{row.original.basepairs}</TableCell>
                 <TableCell align="right">{row.original.max_contig_size}</TableCell>
                 <TableCell align="right">{row.original.N50}</TableCell>
-                <TableCell align="right">{row.original.mapped_reads.toFixed(4)}</TableCell>
+                <TableCell align="right">{row.original.mapped_reads !== 0 ? row.original.mapped_reads.toFixed(4) : row.original.mapped_reads}</TableCell>
                 <TableCell align="right">{row.filtered.contigs}</TableCell>
                 <TableCell align="right">{row.filtered.basepairs}</TableCell>
                 <TableCell align="right">{row.filtered.N50}</TableCell>
@@ -287,58 +287,61 @@ class ReportOverview extends Component {
       </div>
     );
 
-    const gridPlot = (
-      <div style={{ marginTop: "60px" }}>
-        <Grid
-          container
-          spacing={3}
-          direction="row"
-          justify="center"
-          alignItems="center"
-        >
-          <Grid item xs={6}>
-            <Plot
-              data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption][0].data}
-              layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption][0].layout}
-              useResizeHandler={true}
-              style={{ width: "100%", height: "100%" }}
-              line={{
-                width: 1,
-              }}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <Plot
-              data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption][1].data}
-              layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption][1].layout}
-              useResizeHandler={true}
-              style={{ width: "100%", height: "100%" }}
-              line={{
-                width: 1,
-              }}
-            />
-          </Grid>
-        </Grid>
-      </div>
-    );
 
-    const gridPlotWide = (
-      <div style={{ marginTop: "20px" }}>
-        <Plot
-          data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption][2].data}
-          layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption][2].layout}
-          useResizeHandler={true}
-          style={{ width: "100%", height: "100%" }}
-          line={{
-            width: 1,
-          }}
-        />
-      </div>
-    );
 
     let testAccordionMain = <Aux>{dropdown}</Aux>;
 
     if (this.state.dropdownOption === "Global") {
+
+      const gridPlot = (
+        <div style={{ marginTop: "60px" }}>
+          <Grid
+            container
+            spacing={3}
+            direction="row"
+            justify="center"
+            alignItems="center"
+          >
+            <Grid item xs={6}>
+              <Plot
+                data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].contig_size.data}
+                layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].contig_size.layout}
+                useResizeHandler={true}
+                style={{ width: "100%", height: "100%" }}
+                line={{
+                  width: 1,
+                }}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <Plot
+                data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].gap_size.data}
+                layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].gap_size.layout}
+                useResizeHandler={true}
+                style={{ width: "100%", height: "100%" }}
+                line={{
+                  width: 1,
+                }}
+              />
+            </Grid>
+          </Grid>
+        </div>
+      );
+
+      const gridPlotWide = (
+        <div style={{ marginTop: "20px" }}>
+          <Plot
+            data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].misassembly.data}
+            layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].misassembly.layout}
+            useResizeHandler={true}
+            style={{ width: "100%", height: "100%" }}
+            line={{
+              width: 1,
+            }}
+          />
+        </div>
+      );
+
       testAccordionMain = (
         <Aux>
           {dropdown}
@@ -351,9 +354,14 @@ class ReportOverview extends Component {
 
     if (this.state.dropdownOption !== "Global") {
 
+      console.log("TESTE CARALHO")
+      console.log(this.state.dropdownOption)
+      console.log(this.state.buttonOption)
+      console.log(this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].completness.data)
+
       const refComponent = (
         <div style={{ marginTop: "20px" }}>
-          <Typography  variant="h5" align='center' style={{ color: "#4A690C" }}>
+          <Typography variant="h5" align='center' style={{ color: "#4A690C" }}>
             <b>{this.state.buttonOption}</b>
           </Typography>
           <Typography variant="h6" style={{ color: "#4A690C" }}>
@@ -415,11 +423,11 @@ class ReportOverview extends Component {
                       <TableCell component="th" scope="row">
                         {row.assembler}
                       </TableCell>
-                      <TableCell align="right">{row.contiguity.toFixed(4)}</TableCell>
-                      <TableCell align="right">{row.multiplicity.toFixed(4)}</TableCell>
-                      <TableCell align="right">{row.identity.toFixed(4)}</TableCell>
-                      <TableCell align="right">{row.lowest_identity.toFixed(4)}</TableCell>
-                      <TableCell align="right">{row.breadth_of_coverage.toFixed(4)}</TableCell>
+                      <TableCell align="right">{row.contiguity !== 0 ? row.contiguity.toFixed(4) : row.contiguity}</TableCell>
+                      <TableCell align="right">{row.multiplicity !== 0 ? row.multiplicity.toFixed(4) : row.multiplicity}</TableCell>
+                      <TableCell align="right">{row.identity !== 0 ? row.identity.toFixed(4) : row.identity}</TableCell>
+                      <TableCell align="right">{row.lowest_identity !== 0 ? row.lowest_identity.toFixed(4) : row.lowest_identity}</TableCell>
+                      <TableCell align="right">{row.breadth_of_coverage !== 0 ? row.breadth_of_coverage.toFixed(4) : row.breadth_of_coverage}</TableCell>
                       <TableCell align="right">{row.L90}</TableCell>
                       <TableCell align="right">{row.aligned_contigs}</TableCell>
                       <TableCell align="right">{row.NA50}</TableCell>
@@ -445,8 +453,8 @@ class ReportOverview extends Component {
           >
             <Grid item xs={6}>
               <Plot
-                data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption][0][0].data}
-                layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption][0][0].layout}
+                data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].completness.data}
+                layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].completness.layout}
                 useResizeHandler={true}
                 style={{ width: "100%", height: "100%" }}
                 line={{
@@ -456,8 +464,8 @@ class ReportOverview extends Component {
             </Grid>
             <Grid item xs={6}>
               <Plot
-                data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption][1][0].data}
-                layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption][1][0].layout}
+                data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].lx.data}
+                layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].lx.layout}
                 useResizeHandler={true}
                 style={{ width: "100%", height: "100%" }}
                 line={{
@@ -480,8 +488,8 @@ class ReportOverview extends Component {
           >
             <Grid item xs={6}>
               <Plot
-                data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption][2][0].data}
-                layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption][2][0].layout}
+                data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].nax.data}
+                layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].nax.layout}
                 useResizeHandler={true}
                 style={{ width: "100%", height: "100%" }}
                 line={{
@@ -491,8 +499,8 @@ class ReportOverview extends Component {
             </Grid>
             <Grid item xs={6}>
               <Plot
-                data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption][3][0].data}
-                layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption][3][0].layout}
+                data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].ngx.data}
+                layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].ngx.layout}
                 useResizeHandler={true}
                 style={{ width: "100%", height: "100%" }}
                 line={{
@@ -503,13 +511,43 @@ class ReportOverview extends Component {
           </Grid>
         </div>
       );
-  
+
+      const gridPlotWideRef_1 = (
+        <div style={{ marginTop: "20px" }}>
+          <Plot
+            data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].phred.data}
+            layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].phred.layout}
+            useResizeHandler={true}
+            style={{ width: "100%", height: "100%" }}
+            line={{
+              width: 1,
+            }}
+          />
+        </div>
+      );
+
+      const gridPlotWideRef_2 = (
+        <div style={{ marginTop: "20px" }}>
+          <Plot
+            data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].gaps.data}
+            layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].gaps.layout}
+            useResizeHandler={true}
+            style={{ width: "100%", height: "100%" }}
+            line={{
+              width: 1,
+            }}
+          />
+        </div>
+      );
+
       testAccordionMain = (
         <Aux>
           {dropdown}
           <div>{refComponent}</div>
           <div>{refGridPlot}</div>
           <div>{refGridPlot2}</div>
+          <div>{gridPlotWideRef_1}</div>
+          <div>{gridPlotWideRef_2}</div>
         </Aux>
       );
     }
