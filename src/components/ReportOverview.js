@@ -34,8 +34,11 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 
-// Material UI Progress Circle
+// Material UI Icons
 import CircularProgress from '@material-ui/core/CircularProgress';
+import ErrorIcon from '@material-ui/icons/Error';
+import { red } from '@material-ui/core/colors';
+
 
 // Plotly.js
 import Plot from "react-plotly.js";
@@ -83,6 +86,7 @@ class ReportOverview extends Component {
     referenceData: _referenceData,
     mainDataTables: _mainDataTables,
     mainPlotData: _mainDataPlots,
+    sampleData: _sampleData,
   };
 
   plotChangeHandler = (event, value) => {
@@ -101,6 +105,18 @@ class ReportOverview extends Component {
 
     const referenceFile = Object.keys(this.state.referenceData)[0]
     const referenceNames = Object.keys(this.state.referenceData[referenceFile])
+
+    function objToString (obj) {
+      var str = '';
+      for (var p in obj) {
+          if (obj.hasOwnProperty(p)) {
+              str += p + ':' + obj[p].reads + ' reads;\n\n';
+          }
+      }
+      return str;
+  }
+
+  const sampleDataString = objToString(this.state.sampleData)
 
     const overviewColumns = [
       {
@@ -208,6 +224,7 @@ class ReportOverview extends Component {
               <TableRow key={row.assembler}>
                 <TableCell component="th" scope="row">
                   {row.assembler}
+                  {row.original.contigs !== 0 ? '' : <ErrorIcon style={{ color: red[500] }} /> }
                 </TableCell>
                 <TableCell align="right">{row.original.contigs}</TableCell>
                 <TableCell align="right">{row.original.basepairs}</TableCell>
@@ -253,6 +270,9 @@ class ReportOverview extends Component {
                     <div style={{ marginTop: "5%" }}>
                       <Typography variant="h5">
                         <b>References:</b> {referenceFile}
+                      </Typography>
+                      <Typography variant="h5">
+                        <b>Samples:</b> {sampleDataString}
                       </Typography>
                     </div>
                   </Grid>
@@ -354,11 +374,6 @@ class ReportOverview extends Component {
 
     if (this.state.dropdownOption !== "Global") {
 
-      console.log("TESTE CARALHO")
-      console.log(this.state.dropdownOption)
-      console.log(this.state.buttonOption)
-      console.log(this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].completness.data)
-
       const refComponent = (
         <div style={{ marginTop: "20px" }}>
           <Typography variant="h5" align='center' style={{ color: "#4A690C" }}>
@@ -368,7 +383,7 @@ class ReportOverview extends Component {
             {this.state.dropdownOption}
           </Typography>
           <Typography variant="subtitle1">
-            <b>Size:</b> {(this.state.referenceData[referenceFile][this.state.dropdownOption].size / 1000000).toFixed(2)} Mega Basepairs
+            <b>Size:</b> {this.state.referenceData[referenceFile][this.state.dropdownOption].size} Basepairs
           </Typography>
           <Typography variant="subtitle1">
             <b>%GC:</b> {this.state.referenceData[referenceFile][this.state.dropdownOption].GC.toFixed(2)}
@@ -401,10 +416,10 @@ class ReportOverview extends Component {
                       <b>Breadth of Coverage</b>
                     </TableCell>
                     <TableCell>
-                      <b>L90</b>
+                      <b>Aligned Contigs</b>
                     </TableCell>
                     <TableCell>
-                      <b>Aligned Contigs</b>
+                      <b>L90</b>
                     </TableCell>
                     <TableCell>
                       <b>NA50</b>
@@ -421,15 +436,16 @@ class ReportOverview extends Component {
                   {this.state.mainDataTables[this.state.buttonOption].ReferenceTables[this.state.dropdownOption][0].map((row) => (
                     <TableRow key={row.assembler}>
                       <TableCell component="th" scope="row">
-                        {row.assembler}
+                        {row.assembler} 
+                        {row.aligned_contigs !== 0 ? '' : <ErrorIcon style={{ color: red[500] }} /> }
                       </TableCell>
                       <TableCell align="right">{row.contiguity !== 0 ? row.contiguity.toFixed(4) : row.contiguity}</TableCell>
                       <TableCell align="right">{row.multiplicity !== 0 ? row.multiplicity.toFixed(4) : row.multiplicity}</TableCell>
                       <TableCell align="right">{row.identity !== 0 ? row.identity.toFixed(4) : row.identity}</TableCell>
                       <TableCell align="right">{row.lowest_identity !== 0 ? row.lowest_identity.toFixed(4) : row.lowest_identity}</TableCell>
                       <TableCell align="right">{row.breadth_of_coverage !== 0 ? row.breadth_of_coverage.toFixed(4) : row.breadth_of_coverage}</TableCell>
-                      <TableCell align="right">{row.L90}</TableCell>
                       <TableCell align="right">{row.aligned_contigs}</TableCell>
+                      <TableCell align="right">{row.L90}</TableCell>
                       <TableCell align="right">{row.NA50}</TableCell>
                       <TableCell align="right">{row.NG50}</TableCell>
                       <TableCell align="right">{row.aligned_basepairs}</TableCell>
