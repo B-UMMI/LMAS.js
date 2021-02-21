@@ -89,9 +89,9 @@ class ReportOverview extends Component {
     sampleData: _sampleData,
   };
 
-  plotChangeHandler = (event, value) => {
-    console.log(event.target.innerHTML);
-    this.setState({ buttonOption: event.target.innerHTML });
+  plotChangeHandler = (id) => {
+    console.log(id);
+    this.setState({ buttonOption: id });
   };
 
   handleChange = (event) => {
@@ -106,17 +106,17 @@ class ReportOverview extends Component {
     const referenceFile = Object.keys(this.state.referenceData)[0]
     const referenceNames = Object.keys(this.state.referenceData[referenceFile])
 
-    function objToString (obj) {
+    function objToString(obj) {
       var str = '';
       for (var p in obj) {
-          if (obj.hasOwnProperty(p)) {
-              str += p + ':' + obj[p].reads + ' reads;\n\n';
-          }
+        if (obj.hasOwnProperty(p)) {
+          str += p + ':' + obj[p].reads + ' reads;\n\n';
+        }
       }
       return str;
-  }
+    }
 
-  const sampleDataString = objToString(this.state.sampleData)
+    const sampleDataString = objToString(this.state.sampleData)
 
     const overviewColumns = [
       {
@@ -214,9 +214,9 @@ class ReportOverview extends Component {
               <TableCell align="center">
                 <b>N50</b>
               </TableCell>
-              {/* <TableCell align="center">
+              <TableCell align="center">
                 <b>Misassembled contigs</b>
-              </TableCell> */}
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -224,7 +224,7 @@ class ReportOverview extends Component {
               <TableRow key={row.assembler}>
                 <TableCell component="th" scope="row">
                   {row.assembler}
-                  {row.original.contigs !== 0 ? '' : <ErrorIcon style={{ color: red[500] }} /> }
+                  {row.original.contigs !== 0 ? '' : <ErrorIcon style={{ color: red[500] }} />}
                 </TableCell>
                 <TableCell align="right">{row.original.contigs}</TableCell>
                 <TableCell align="right">{row.original.basepairs}</TableCell>
@@ -234,6 +234,7 @@ class ReportOverview extends Component {
                 <TableCell align="right">{row.filtered.contigs}</TableCell>
                 <TableCell align="right">{row.filtered.basepairs}</TableCell>
                 <TableCell align="right">{row.filtered.N50}</TableCell>
+                <TableCell align="right">{row.filtered.misassembled_contigs}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -436,8 +437,8 @@ class ReportOverview extends Component {
                   {this.state.mainDataTables[this.state.buttonOption].ReferenceTables[this.state.dropdownOption][0].map((row) => (
                     <TableRow key={row.assembler}>
                       <TableCell component="th" scope="row">
-                        {row.assembler} 
-                        {row.aligned_contigs !== 0 ? '' : <ErrorIcon style={{ color: red[500] }} /> }
+                        {row.assembler}
+                        {row.aligned_contigs !== 0 ? '' : <ErrorIcon style={{ color: red[500] }} />}
                       </TableCell>
                       <TableCell align="right">{row.contiguity !== 0 ? row.contiguity.toFixed(4) : row.contiguity}</TableCell>
                       <TableCell align="right">{row.multiplicity !== 0 ? row.multiplicity.toFixed(4) : row.multiplicity}</TableCell>
@@ -556,6 +557,21 @@ class ReportOverview extends Component {
         </div>
       );
 
+      const gridPlotWideRef_3 = (
+        <div style={{ marginTop: "20px" }}>
+          <Plot
+            data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].snps.data}
+            layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].snps.layout}
+            useResizeHandler={true}
+            style={{ width: "100%", height: "100%" }}
+            line={{
+              width: 1,
+            }}
+          />
+        </div>
+      );
+
+
       testAccordionMain = (
         <Aux>
           {dropdown}
@@ -564,6 +580,7 @@ class ReportOverview extends Component {
           <div>{refGridPlot2}</div>
           <div>{gridPlotWideRef_1}</div>
           <div>{gridPlotWideRef_2}</div>
+          <div>{gridPlotWideRef_3}</div>
         </Aux>
       );
     }
@@ -583,8 +600,8 @@ class ReportOverview extends Component {
                       key={id}
                       style={style.button}
                       className={classesRE.tabButton}
-                      onClick={(e) => {
-                        this.plotChangeHandler(e);
+                      onClick={() => {
+                        this.plotChangeHandler(id);
                       }}
                     >
                       {id}
