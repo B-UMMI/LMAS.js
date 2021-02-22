@@ -35,7 +35,6 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 
 // Material UI Icons
-import CircularProgress from '@material-ui/core/CircularProgress';
 import ErrorIcon from '@material-ui/icons/Error';
 import { red } from '@material-ui/core/colors';
 
@@ -102,6 +101,7 @@ class ReportOverview extends Component {
   render() {
 
     const { classes } = this.props;
+    const open = Boolean(this.state.anchorEl);
 
     const referenceFile = Object.keys(this.state.referenceData)[0]
     const referenceNames = Object.keys(this.state.referenceData[referenceFile])
@@ -190,31 +190,31 @@ class ReportOverview extends Component {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell align="center">
+              <TableCell title="Total number of contigs in the assembly" align="center">
                 <b>Contigs</b>
               </TableCell>
-              <TableCell align="center">
+              <TableCell title="Total number of basepairs in the assembly" align="center">
                 <b>Basepairs</b>
               </TableCell>
-              <TableCell align="center">
+              <TableCell title="Lenght on the largest contig in the assembly" align="center">
                 <b>Max contig size</b>
               </TableCell>
-              <TableCell align="center">
+              <TableCell title="Length for which the collection of all contigs of that length or longer covers at least 50% of the total length of the assembled contigs" align="center">
                 <b>N50</b>
               </TableCell>
-              <TableCell align="center">
+              <TableCell title="Ratio of mapped reads to the assembly" align="center">
                 <b>Mapped reads</b>
               </TableCell>
-              <TableCell align="center">
+              <TableCell title="Total number of contigs in the assembly" align="center">
                 <b>Contigs</b>
               </TableCell>
-              <TableCell align="center">
+              <TableCell title="Total number of basepairs in the assembly" align="center">
                 <b>Basepairs</b>
               </TableCell>
-              <TableCell align="center">
+              <TableCell title="Length for which the collection of all contigs of that length or longer covers at least 50% of the total length of the assembled contigs" align="center">
                 <b>N50</b>
               </TableCell>
-              <TableCell align="center">
+              <TableCell title="Number of missassembled contigs in the assembly" align="center">
                 <b>Misassembled contigs</b>
               </TableCell>
             </TableRow>
@@ -401,34 +401,34 @@ class ReportOverview extends Component {
                     <TableCell>
                       <b>Assembler</b>
                     </TableCell>
-                    <TableCell>
+                    <TableCell title="Longest single alignment between the assembly and the reference, relative to the reference length">
                       <b>Contiguity</b>
                     </TableCell>
-                    <TableCell>
+                    <TableCell title="Ratio of the length of alignable assembled sequence to covered sequence on the reference">
                       <b>Multiplicity</b>
                     </TableCell>
-                    <TableCell>
+                    <TableCell title="Ratio of identical basepairs in all aligned contigs to the reference">
                       <b>Identity</b>
                     </TableCell>
-                    <TableCell>
+                    <TableCell title="Identity of the lowest scoring contig to the reference">
                       <b>Lowest Identity</b>
                     </TableCell>
-                    <TableCell>
+                    <TableCell title="Ratio of covered sequence on the reference by aligned contigs">
                       <b>Breadth of Coverage</b>
                     </TableCell>
-                    <TableCell>
+                    <TableCell title="Number of aligned contigs to the reference">
                       <b>Aligned Contigs</b>
                     </TableCell>
-                    <TableCell>
+                    <TableCell title="Minimal number of contigs that cover 90% of the sequence of the reference">
                       <b>L90</b>
                     </TableCell>
-                    <TableCell>
+                    <TableCell title="Length for which the collection of all aligned contigs of that length or longer covers at least 50% of the total length of the aligned assembled contigs">
                       <b>NA50</b>
                     </TableCell>
-                    <TableCell>
+                    <TableCell title="Length for which the collection of all aligned contigs of that length or longer covers at least 50% of the sequence of the reference">
                       <b>NG50</b>
                     </TableCell>
-                    <TableCell>
+                    <TableCell title="Total basepairs aligned to to the reference">
                       <b>Aligned Basepairs</b>
                     </TableCell>
                   </TableRow>
@@ -469,26 +469,30 @@ class ReportOverview extends Component {
             alignItems="center"
           >
             <Grid item xs={6}>
-              <Plot
-                data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].completness.data}
-                layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].completness.layout}
-                useResizeHandler={true}
-                style={{ width: "100%", height: "100%" }}
-                line={{
-                  width: 1,
-                }}
-              />
+              {(typeof this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].completness === "undefined") ? <div /> :
+                <Plot
+                  data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].completness.data}
+                  layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].completness.layout}
+                  useResizeHandler={true}
+                  style={{ width: "100%", height: "100%" }}
+                  line={{
+                    width: 1,
+                  }}
+                />
+              }
             </Grid>
             <Grid item xs={6}>
-              <Plot
-                data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].lx.data}
-                layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].lx.layout}
-                useResizeHandler={true}
-                style={{ width: "100%", height: "100%" }}
-                line={{
-                  width: 1,
-                }}
-              />
+              {(typeof this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].lx === "undefined") ? <div /> :
+                <Plot
+                  data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].lx.data}
+                  layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].lx.layout}
+                  useResizeHandler={true}
+                  style={{ width: "100%", height: "100%" }}
+                  line={{
+                    width: 1,
+                  }}
+                />
+              }
             </Grid>
           </Grid>
         </div>
@@ -504,26 +508,30 @@ class ReportOverview extends Component {
             alignItems="center"
           >
             <Grid item xs={6}>
-              <Plot
-                data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].nax.data}
-                layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].nax.layout}
-                useResizeHandler={true}
-                style={{ width: "100%", height: "100%" }}
-                line={{
-                  width: 1,
-                }}
-              />
+              {(typeof this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].nax === "undefined") ? <div /> :
+                <Plot
+                  data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].nax.data}
+                  layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].nax.layout}
+                  useResizeHandler={true}
+                  style={{ width: "100%", height: "100%" }}
+                  line={{
+                    width: 1,
+                  }}
+                />
+              }
             </Grid>
             <Grid item xs={6}>
-              <Plot
-                data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].ngx.data}
-                layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].ngx.layout}
-                useResizeHandler={true}
-                style={{ width: "100%", height: "100%" }}
-                line={{
-                  width: 1,
-                }}
-              />
+              {(typeof this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].ngx === "undefined") ? <div /> :
+                <Plot
+                  data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].ngx.data}
+                  layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].ngx.layout}
+                  useResizeHandler={true}
+                  style={{ width: "100%", height: "100%" }}
+                  line={{
+                    width: 1,
+                  }}
+                />
+              }
             </Grid>
           </Grid>
         </div>
@@ -531,43 +539,49 @@ class ReportOverview extends Component {
 
       const gridPlotWideRef_1 = (
         <div style={{ marginTop: "20px" }}>
-          <Plot
-            data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].phred.data}
-            layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].phred.layout}
-            useResizeHandler={true}
-            style={{ width: "100%", height: "100%" }}
-            line={{
-              width: 1,
-            }}
-          />
+          {(typeof this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].phred === "undefined") ? <div /> :
+            <Plot
+              data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].phred.data}
+              layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].phred.layout}
+              useResizeHandler={true}
+              style={{ width: "100%", height: "100%" }}
+              line={{
+                width: 1,
+              }}
+            />
+          }
         </div>
       );
 
       const gridPlotWideRef_2 = (
         <div style={{ marginTop: "20px" }}>
-          <Plot
-            data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].gaps.data}
-            layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].gaps.layout}
-            useResizeHandler={true}
-            style={{ width: "100%", height: "100%" }}
-            line={{
-              width: 1,
-            }}
-          />
+          {(typeof this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].gaps === "undefined") ? <div /> :
+            <Plot
+              data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].gaps.data}
+              layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].gaps.layout}
+              useResizeHandler={true}
+              style={{ width: "100%", height: "100%" }}
+              line={{
+                width: 1,
+              }}
+            />
+          }
         </div>
       );
 
       const gridPlotWideRef_3 = (
         <div style={{ marginTop: "20px" }}>
-          <Plot
-            data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].snps.data}
-            layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].snps.layout}
-            useResizeHandler={true}
-            style={{ width: "100%", height: "100%" }}
-            line={{
-              width: 1,
-            }}
-          />
+          {(typeof this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].snps === "undefined") ? <div /> :
+            <Plot
+              data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].snps.data}
+              layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].snps.layout}
+              useResizeHandler={true}
+              style={{ width: "100%", height: "100%" }}
+              line={{
+                width: 1,
+              }}
+            />
+          }
         </div>
       );
 
@@ -620,7 +634,7 @@ class ReportOverview extends Component {
       <Aux>
         <div>{accordion}</div>
         <div>{accordionMain}</div>
-      </Aux>
+      </Aux >
     );
   }
 }
