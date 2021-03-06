@@ -202,7 +202,7 @@ class ReportOverview extends Component {
               <TableCell title="Length for which the collection of all contigs of that length or longer covers at least 50% of the total length of the assembled contigs" align="center">
                 <b>N50</b>
               </TableCell>
-              <TableCell title="Ratio of mapped reads to the assembly" align="center">
+              <TableCell title="Percentage of mapped reads to the assembly" align="center">
                 <b>Mapped reads</b>
               </TableCell>
               <TableCell title="Total number of contigs in the assembly" align="center">
@@ -324,6 +324,9 @@ class ReportOverview extends Component {
             alignItems="center"
           >
             <Grid item xs={6}>
+              <Typography variant="h5" align='center' style={{ color: "#4A690C" }}>
+                Contig size distribution per assembler (contigs over {_minContigSize})
+              </Typography>
               <Plot
                 data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].contig_size.data}
                 layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].contig_size.layout}
@@ -333,8 +336,15 @@ class ReportOverview extends Component {
                   width: 1,
                 }}
               />
+              <Typography align='center'>
+                Gray boxplots represent the size distribution of contigs that align to any of the reference genomes per assembler.
+                Unmapped contigs are represented as red circles. Only contigs larger than {_minContigSize} are considered.
+              </Typography>
             </Grid>
             <Grid item xs={6}>
+              <Typography variant="h5" align='center' style={{ color: "#4A690C" }}>
+                Gap size distribution per assembler per assembler (contigs over {_minContigSize})
+              </Typography>
               <Plot
                 data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].gap_size.data}
                 layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].gap_size.layout}
@@ -344,6 +354,10 @@ class ReportOverview extends Component {
                   width: 1,
                 }}
               />
+              <Typography align='center'>
+                Gray boxplots represent the distribution of gap sizes in comparison to the reference genomes per assembler.
+                Only contigs larger than {_minContigSize} basepairs are considered.
+              </Typography>
             </Grid>
           </Grid>
         </div>
@@ -351,6 +365,9 @@ class ReportOverview extends Component {
 
       const gridPlotWide = (
         <div style={{ marginTop: "20px" }}>
+          <Typography variant="h5" align='center' style={{ color: "#4A690C" }}>
+            Misassembled contigs
+          </Typography>
           <Plot
             data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].misassembly.data}
             layout={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].misassembly.layout}
@@ -360,6 +377,12 @@ class ReportOverview extends Component {
               width: 1,
             }}
           />
+          <Typography align='center'>
+            Scatter plot for misassembled contigs per assembler. The y-axis represent the number of blocks the misassembled contig
+            was broken into in the mapping process, and the x axis its size in basepairs. Information of the type of misassembly
+            is available as hoover text for the type of misassembly. The box plot represents the distribution on contig size for all
+            misassembled contigs.
+           </Typography>
         </div>
       );
 
@@ -380,7 +403,7 @@ class ReportOverview extends Component {
           <Typography variant="h5" align='center' style={{ color: "#4A690C" }}>
             <b>{this.state.buttonOption}</b>
           </Typography>
-          <Typography variant="h6" style={{ color: "#4A690C" }}>
+          <Typography variant="h5" style={{ color: "#4A690C" }}>
             {this.state.dropdownOption}
           </Typography>
           <Typography variant="subtitle1">
@@ -469,6 +492,9 @@ class ReportOverview extends Component {
             alignItems="center"
           >
             <Grid item xs={6}>
+              <Typography variant="h6" align='center' style={{ color: "#4A690C" }}>
+                {this.state.dropdownOption} Genome Fragmentation
+              </Typography>
               {(typeof this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].completness === "undefined") ? <div /> :
                 <Plot
                   data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].completness.data}
@@ -480,8 +506,15 @@ class ReportOverview extends Component {
                   }}
                 />
               }
+              <Typography align='center'>
+                Number of contigs per breath of coverage of the reference per assembler.
+                Data for assemblers who fail to produce sequences that align to the reference aren't present.
+              </Typography>
             </Grid>
             <Grid item xs={6}>
+              <Typography variant="h6" align='center' style={{ color: "#4A690C" }}>
+                {this.state.dropdownOption} Lx Metric
+              </Typography>
               {(typeof this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].lx === "undefined") ? <div /> :
                 <Plot
                   data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].lx.data}
@@ -493,6 +526,10 @@ class ReportOverview extends Component {
                   }}
                 />
               }
+              <Typography align='center'>
+                Minimal number of contigs that cover x percent of the sequence of the reference, ranging from 0 to 100, per assembler.
+                Data for assemblers who fail to produce sequences that align to the reference aren't present.
+              </Typography>
             </Grid>
           </Grid>
         </div>
@@ -508,6 +545,9 @@ class ReportOverview extends Component {
             alignItems="center"
           >
             <Grid item xs={6}>
+              <Typography variant="h6" align='center' style={{ color: "#4A690C" }}>
+                {this.state.dropdownOption} NAx Metric
+              </Typography>
               {(typeof this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].nax === "undefined") ? <div /> :
                 <Plot
                   data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].nax.data}
@@ -519,8 +559,16 @@ class ReportOverview extends Component {
                   }}
                 />
               }
+              <Typography align='center'>
+                Length for which the collection of all aligned contigs of that length or longer covers at least x percent
+                of the total length of the aligned assembled contigs, ranging from 0 to 100, per assembler.
+                Data for assemblers who fail to produce sequences that align to the reference aren't present.
+              </Typography>
             </Grid>
             <Grid item xs={6}>
+              <Typography variant="h6" align='center' style={{ color: "#4A690C" }}>
+                {this.state.dropdownOption} NGx Metric
+              </Typography>
               {(typeof this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].ngx === "undefined") ? <div /> :
                 <Plot
                   data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].ngx.data}
@@ -532,6 +580,11 @@ class ReportOverview extends Component {
                   }}
                 />
               }
+              <Typography align='center'>
+                Length for which the collection of all aligned contigs of that length or longer covers at least x percentage
+                of the sequence of the reference, ranging from 0 to 100, per assembler.
+                Data for assemblers who fail to produce sequences that align to the reference aren't present.
+              </Typography>
             </Grid>
           </Grid>
         </div>
@@ -539,6 +592,9 @@ class ReportOverview extends Component {
 
       const gridPlotWideRef_1 = (
         <div style={{ marginTop: "20px" }}>
+          <Typography variant="h6" align='center' style={{ color: "#4A690C" }}>
+            {this.state.dropdownOption} Phred-like Score Metric
+          </Typography>
           {(typeof this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].phred === "undefined") ? <div /> :
             <Plot
               data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].phred.data}
@@ -550,11 +606,18 @@ class ReportOverview extends Component {
               }}
             />
           }
+          <Typography align='center'>
+            HOW DO I EXPLAIN THIS per contig, per assembler.
+            Data for assemblers who fail to produce sequences that align to the reference aren't present.
+          </Typography>
         </div>
       );
 
       const gridPlotWideRef_2 = (
         <div style={{ marginTop: "20px" }}>
+          <Typography variant="h6" align='center' style={{ color: "#4A690C" }}>
+            {this.state.dropdownOption} Gaps
+          </Typography>
           {(typeof this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].gaps === "undefined") ? <div /> :
             <Plot
               data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].gaps.data}
@@ -566,11 +629,19 @@ class ReportOverview extends Component {
               }}
             />
           }
+          <Typography align='center'>
+            Location of gaps in comparison to the reference sequence, per assembler. Length of gap, in basepairs, is available 
+            as hoover text. The top plot represents the histogram of the cumulative number of gaps per position in the reference.
+            Data for assemblers who fail to produce sequences that align to the reference aren't present.
+          </Typography>
         </div>
       );
 
       const gridPlotWideRef_3 = (
         <div style={{ marginTop: "20px" }}>
+          <Typography variant="h5" align='center' style={{ color: "#4A690C" }}>
+            {this.state.dropdownOption} SNPs
+          </Typography>
           {(typeof this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].snps === "undefined") ? <div /> :
             <Plot
               data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].snps.data}
@@ -582,6 +653,11 @@ class ReportOverview extends Component {
               }}
             />
           }
+          <Typography align='center'>
+            Location of substitutions in comparison to the reference sequence, per assembler.
+            The top plot represents the histogram of the cumulative number of substitutions per position in the reference.
+            Data for assemblers who fail to produce sequences that align to the reference aren't present.
+          </Typography>
         </div>
       );
 
