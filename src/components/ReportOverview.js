@@ -33,6 +33,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
+import Link from '@material-ui/core/Link';
 
 // Material UI Icons
 import ErrorIcon from '@material-ui/icons/Error';
@@ -101,7 +102,6 @@ class ReportOverview extends Component {
   render() {
 
     const { classes } = this.props;
-    const open = Boolean(this.state.anchorEl);
 
     const referenceFile = Object.keys(this.state.referenceData)[0]
     const referenceNames = Object.keys(this.state.referenceData[referenceFile])
@@ -339,11 +339,14 @@ class ReportOverview extends Component {
               <Typography align='center'>
                 Gray boxplots represent the size distribution of contigs that align to any of the reference genomes per assembler.
                 Unmapped contigs are represented as red circles. Only contigs larger than {_minContigSize} are considered.
+                <Link href={`plots/${this.state.buttonOption}_contig_size_distribution.html`} target="_blank" rel="noopener noreferrer">
+                  Open plot in full size.
+                </Link>
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <Typography variant="h5" align='center' style={{ color: "#4A690C" }}>
-                Gap size distribution per assembler per assembler (contigs over {_minContigSize})
+                Gap size distribution per assembler (contigs over {_minContigSize})
               </Typography>
               <Plot
                 data={this.state.mainPlotData[this.state.buttonOption].PlotData[this.state.dropdownOption].gap_size.data}
@@ -357,6 +360,9 @@ class ReportOverview extends Component {
               <Typography align='center'>
                 Gray boxplots represent the distribution of gap sizes in comparison to the reference genomes per assembler.
                 Only contigs larger than {_minContigSize} basepairs are considered.
+                <Link href={`plots/${this.state.buttonOption}_gap_size_boxplot.html`} target="_blank" rel="noopener noreferrer">
+                  Open plot in full size.
+                </Link>
               </Typography>
             </Grid>
           </Grid>
@@ -382,7 +388,10 @@ class ReportOverview extends Component {
             was broken into in the mapping process, and the x axis its size in basepairs. Information of the type of misassembly
             is available as hoover text for the type of misassembly. The box plot represents the distribution on contig size for all
             misassembled contigs.
-           </Typography>
+            <Link href={`plots/${this.state.buttonOption}_misassembly.html`} target="_blank" rel="noopener noreferrer">
+              Open plot in full size.
+            </Link>
+          </Typography>
         </div>
       );
 
@@ -509,6 +518,9 @@ class ReportOverview extends Component {
               <Typography align='center'>
                 Number of contigs per breath of coverage of the reference per assembler.
                 Data for assemblers who fail to produce sequences that align to the reference aren't present.
+                <Link href={`plots/${this.state.buttonOption}_${this.state.dropdownOption.split(' ').join('_')}_breadth_of_coverage_plot.html`} target="_blank" rel="noopener noreferrer">
+                  Open plot in full size.
+                </Link>
               </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -529,6 +541,9 @@ class ReportOverview extends Component {
               <Typography align='center'>
                 Minimal number of contigs that cover x percent of the sequence of the reference, ranging from 0 to 100, per assembler.
                 Data for assemblers who fail to produce sequences that align to the reference aren't present.
+                <Link href={`plots/${this.state.buttonOption}_${this.state.dropdownOption.split(' ').join('_')}_lx.html`} target="_blank" rel="noopener noreferrer">
+                  Open plot in full size.
+                </Link>
               </Typography>
             </Grid>
           </Grid>
@@ -563,6 +578,9 @@ class ReportOverview extends Component {
                 Length for which the collection of all aligned contigs of that length or longer covers at least x percent
                 of the total length of the aligned assembled contigs, ranging from 0 to 100, per assembler.
                 Data for assemblers who fail to produce sequences that align to the reference aren't present.
+                <Link href={`plots/${this.state.buttonOption}_${this.state.dropdownOption.split(' ').join('_')}_nax.html`} target="_blank" rel="noopener noreferrer">
+                  Open plot in full size.
+                </Link>
               </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -584,6 +602,9 @@ class ReportOverview extends Component {
                 Length for which the collection of all aligned contigs of that length or longer covers at least x percentage
                 of the sequence of the reference, ranging from 0 to 100, per assembler.
                 Data for assemblers who fail to produce sequences that align to the reference aren't present.
+                <Link href={`plots/${this.state.buttonOption}_${this.state.dropdownOption.split(' ').join('_')}_ngx.html`} target="_blank" rel="noopener noreferrer">
+                  Open plot in full size.
+                </Link>
               </Typography>
             </Grid>
           </Grid>
@@ -609,6 +630,9 @@ class ReportOverview extends Component {
           <Typography align='center'>
             HOW DO I EXPLAIN THIS per contig, per assembler.
             Data for assemblers who fail to produce sequences that align to the reference aren't present.
+            <Link href={`plots/${this.state.buttonOption}_${this.state.dropdownOption.split(' ').join('_')}_phred.html`} target="_blank" rel="noopener noreferrer">
+              Open plot in full size.
+            </Link>
           </Typography>
         </div>
       );
@@ -630,9 +654,12 @@ class ReportOverview extends Component {
             />
           }
           <Typography align='center'>
-            Location of gaps in comparison to the reference sequence, per assembler. Length of gap, in basepairs, is available 
+            Location of gaps in comparison to the reference sequence, per assembler. Length of gap, in basepairs, is available
             as hoover text. The top plot represents the histogram of the cumulative number of gaps per position in the reference.
             Data for assemblers who fail to produce sequences that align to the reference aren't present.
+            <Link href={`plots/${this.state.buttonOption}_${this.state.dropdownOption.split(' ').join('_')}_gaps.html`} target="_blank" rel="noopener noreferrer">
+              Open plot in full size.
+            </Link>
           </Typography>
         </div>
       );
@@ -657,6 +684,9 @@ class ReportOverview extends Component {
             Location of substitutions in comparison to the reference sequence, per assembler.
             The top plot represents the histogram of the cumulative number of substitutions per position in the reference.
             Data for assemblers who fail to produce sequences that align to the reference aren't present.
+            <Link href={`plots/${this.state.buttonOption}_${this.state.dropdownOption.split(' ').join('_')}_snps.html`} target="_blank" rel="noopener noreferrer">
+              Open plot in full size.
+            </Link>
           </Typography>
         </div>
       );
