@@ -39,7 +39,6 @@ import Link from '@material-ui/core/Link';
 import ErrorIcon from '@material-ui/icons/Error';
 import { red } from '@material-ui/core/colors';
 
-
 // Plotly.js
 import Plot from "react-plotly.js";
 

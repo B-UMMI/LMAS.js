@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 
 // Material UI icon imports
 import GitHubIcon from "@material-ui/icons/GitHub";
+import ChromeReaderModeIcon from "@material-ui/icons/ChromeReaderMode";
 
 export default function Layout() {
   const styles = {
@@ -34,6 +35,15 @@ export default function Layout() {
           >
             <IconButton aria-label="github">
               <GitHubIcon style={{ color: "white" }} />
+            </IconButton>
+          </a>
+          <a
+            href={"https://lmas.readthedocs.io/en/latest/"}
+            target={"_blank"}
+            rel="noopener noreferrer"
+          >
+            <IconButton aria-label="readthedocs">
+              <ChromeReaderModeIcon style={{ color: "white" }} />
             </IconButton>
           </a>
         </Toolbar>
