@@ -123,6 +123,10 @@ class ReportOverview extends Component {
         headerName: "Assembler",
       },
       {
+        field: "version",
+        headerName: "Version",
+      },
+      {
         field: "avgTime",
         headerName: "Avg Time",
       },
