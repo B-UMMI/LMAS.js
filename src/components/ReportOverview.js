@@ -454,6 +454,9 @@ class ReportOverview extends Component {
                     <TableCell title="Number of aligned contigs to the reference">
                       <b>Aligned Contigs</b>
                     </TableCell>
+                    <TableCell title="Number of aligned contigs with misassemblies">
+                      <b>Misassembled contigs</b>
+                    </TableCell>
                     <TableCell title="Minimal number of contigs that cover 90% of the sequence of the reference">
                       <b>L90</b>
                     </TableCell>
@@ -481,6 +484,7 @@ class ReportOverview extends Component {
                       <TableCell align="right">{row.lowest_identity !== 0 ? row.lowest_identity.toFixed(4) : row.lowest_identity}</TableCell>
                       <TableCell align="right">{row.breadth_of_coverage !== 0 ? row.breadth_of_coverage.toFixed(4) : row.breadth_of_coverage}</TableCell>
                       <TableCell align="right">{row.aligned_contigs}</TableCell>
+                      <TableCell align="right">{row.misassembled_contigs}</TableCell>
                       <TableCell align="right">{row.L90}</TableCell>
                       <TableCell align="right">{row.NA50}</TableCell>
                       <TableCell align="right">{row.NG50}</TableCell>
