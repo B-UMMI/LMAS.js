@@ -42,6 +42,10 @@ import { red } from "@material-ui/core/colors";
 // Plotly.js
 import Plot from "react-plotly.js";
 
+// React-Markdown
+import ReactMarkdown from "react-markdown";
+import gfm from "remark-gfm";
+
 const style = {
   buttonBar: {
     overflowX: "auto",
@@ -127,7 +131,7 @@ class ReportOverview extends Component {
         field: "assembler",
         width: 200,
         // headerName: "Assembler",
-        renderHeader: () => <strong>{"Assembler"}</strong>
+        renderHeader: () => <strong>{"Assembler"}</strong>,
       },
       {
         field: "version",
@@ -143,7 +147,7 @@ class ReportOverview extends Component {
         // headerName: "Avg Time",
         headerAlign: "center",
         align: "center",
-        renderHeader: () => <strong>{"Avg Time"}</strong>
+        renderHeader: () => <strong>{"Avg Time"}</strong>,
       },
       {
         field: "cpus",
@@ -151,7 +155,7 @@ class ReportOverview extends Component {
         headerName: "CPU/Hour",
         type: "number",
         headerAlign: "center",
-        renderHeader: () => <strong>{"CPU/Hour"}</strong>
+        renderHeader: () => <strong>{"CPU/Hour"}</strong>,
       },
       {
         field: "max_rss",
@@ -159,7 +163,7 @@ class ReportOverview extends Component {
         // headerName: "Max Memory (GB)",
         type: "number",
         headerAlign: "center",
-        renderHeader: () => <strong>{"Max Memory (GB)"}</strong>
+        renderHeader: () => <strong>{"Max Memory (GB)"}</strong>,
       },
       {
         field: "avgRead",
@@ -167,7 +171,7 @@ class ReportOverview extends Component {
         // headerName: "Average Read (GB)",
         type: "number",
         headerAlign: "center",
-        renderHeader: () => <strong>{"Average Read (GB)"}</strong>
+        renderHeader: () => <strong>{"Average Read (GB)"}</strong>,
       },
       {
         field: "avgWrite",
@@ -175,7 +179,7 @@ class ReportOverview extends Component {
         // headerName: "Average Write (GB)",
         type: "number",
         headerAlign: "center",
-        renderHeader: () => <strong>{"Average Write (GB)"}</strong>
+        renderHeader: () => <strong>{"Average Write (GB)"}</strong>,
       },
     ];
 
@@ -342,13 +346,28 @@ class ReportOverview extends Component {
               <Typography variant="h5">
                 <b>Samples:</b> {sampleDataString}
               </Typography>
+              <ReactMarkdown
+                plugins={[gfm]}
+                children={
+                  " # Testing Markdown. This is a test to appease the *master*. "
+                }
+              />
             </div>
           </Grid>
         </Grid>
       </Aux>
     );
 
-    const aboutUs = <Typography variant="h2">Testing</Typography>;
+    const aboutUs = (
+      <div>
+        <ReactMarkdown
+          plugins={[gfm]}
+          children={
+            " # Testing Markdown. This is a test to appease the *master*. "
+          }
+        />
+      </div>
+    );
 
     const accordion = (
       <div>
