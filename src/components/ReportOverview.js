@@ -516,13 +516,6 @@ class ReportOverview extends Component {
                 Gray boxplots represent the distribution of gap sizes in
                 comparison to the reference genomes per assembler. Only contigs
                 larger than {_minContigSize} basepairs are considered.
-                <Link
-                  href={`plots/${this.state.buttonOption}_gap_size_boxplot.html`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open plot in full size.
-                </Link>
               </Typography>
             </Grid>
           </Grid>
@@ -558,13 +551,6 @@ class ReportOverview extends Component {
             Information of the type of misassembly is available as hoover text
             for the type of misassembly. The box plot represents the
             distribution on contig size for all misassembled contigs.
-            <Link
-              href={`plots/${this.state.buttonOption}_misassembly.html`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open plot in full size.
-            </Link>
           </Typography>
         </div>
       );
@@ -750,17 +736,6 @@ class ReportOverview extends Component {
                 Number of contigs per breath of coverage of the reference per
                 assembler. Data for assemblers who fail to produce sequences
                 that align to the reference aren't present.
-                <Link
-                  href={`plots/${
-                    this.state.buttonOption
-                  }_${this.state.dropdownOption
-                    .split(" ")
-                    .join("_")}_breadth_of_coverage_plot.html`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open plot in full size.
-                </Link>
               </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -799,15 +774,6 @@ class ReportOverview extends Component {
                 of the reference, ranging from 0 to 100, per assembler. Data for
                 assemblers who fail to produce sequences that align to the
                 reference aren't present.
-                <Link
-                  href={`plots/${
-                    this.state.buttonOption
-                  }_${this.state.dropdownOption.split(" ").join("_")}_lx.html`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open plot in full size.
-                </Link>
               </Typography>
             </Grid>
           </Grid>
@@ -860,15 +826,6 @@ class ReportOverview extends Component {
                 of the aligned assembled contigs, ranging from 0 to 100, per
                 assembler. Data for assemblers who fail to produce sequences
                 that align to the reference aren't present.
-                <Link
-                  href={`plots/${
-                    this.state.buttonOption
-                  }_${this.state.dropdownOption.split(" ").join("_")}_nax.html`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open plot in full size.
-                </Link>
               </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -908,15 +865,6 @@ class ReportOverview extends Component {
                 the reference, ranging from 0 to 100, per assembler. Data for
                 assemblers who fail to produce sequences that align to the
                 reference aren't present.
-                <Link
-                  href={`plots/${
-                    this.state.buttonOption
-                  }_${this.state.dropdownOption.split(" ").join("_")}_ngx.html`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open plot in full size.
-                </Link>
               </Typography>
             </Grid>
           </Grid>
@@ -955,15 +903,6 @@ class ReportOverview extends Component {
             HOW DO I EXPLAIN THIS per contig, per assembler. Data for assemblers
             who fail to produce sequences that align to the reference aren't
             present.
-            <Link
-              href={`plots/${
-                this.state.buttonOption
-              }_${this.state.dropdownOption.split(" ").join("_")}_phred.html`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open plot in full size.
-            </Link>
           </Typography>
         </div>
       );
@@ -1002,15 +941,6 @@ class ReportOverview extends Component {
             The top plot represents the histogram of the cumulative number of
             gaps per position in the reference. Data for assemblers who fail to
             produce sequences that align to the reference aren't present.
-            <Link
-              href={`plots/${
-                this.state.buttonOption
-              }_${this.state.dropdownOption.split(" ").join("_")}_gaps.html`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open plot in full size.
-            </Link>
           </Typography>
         </div>
       );
@@ -1049,15 +979,6 @@ class ReportOverview extends Component {
             cumulative number of substitutions per position in the reference.
             Data for assemblers who fail to produce sequences that align to the
             reference aren't present.
-            <Link
-              href={`plots/${
-                this.state.buttonOption
-              }_${this.state.dropdownOption.split(" ").join("_")}_snps.html`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open plot in full size.
-            </Link>
           </Typography>
         </div>
       );
