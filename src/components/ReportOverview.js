@@ -209,10 +209,10 @@ class ReportOverview extends Component {
         >
           <TableHead>
             <TableRow>
-              <TableCell rowSpan={2}>
+              <TableCell rowSpan={3}>
                 <b>Assembler</b>
               </TableCell>
-              <TableCell colSpan={5} align="center">
+              <TableCell colSpan={6} align="center">
                 <b>Original Assembly</b>
               </TableCell>
               <TableCell
@@ -226,57 +226,54 @@ class ReportOverview extends Component {
             <TableRow>
               <TableCell
                 title="Total number of contigs in the assembly"
-                align="center"
-              >
+                align="center">
                 <b>Contigs</b>
               </TableCell>
               <TableCell
                 title="Total number of basepairs in the assembly"
-                align="center"
-              >
+                align="center">
                 <b>Basepairs</b>
               </TableCell>
               <TableCell
                 title="Lenght on the largest contig in the assembly"
-                align="center"
-              >
+                align="center">
                 <b>Max contig size</b>
               </TableCell>
               <TableCell
                 title="Length for which the collection of all contigs of that length or longer covers at least 50% of the total length of the assembled contigs"
-                align="center"
-              >
+                align="center">
                 <b>N50</b>
               </TableCell>
               <TableCell
                 title="Percentage of mapped reads to the assembly"
-                align="center"
-              >
+                align="center">
                 <b>Mapped reads</b>
+              </TableCell>
+              <TableCell title="Total of 'N's in assembly basepairs">
+                <b>Number of "N" basepais</b>
               </TableCell>
               <TableCell
                 title="Total number of contigs in the assembly"
-                align="center"
-              >
+                align="center">
                 <b>Contigs</b>
               </TableCell>
               <TableCell
                 title="Total number of basepairs in the assembly"
-                align="center"
-              >
+                align="center">
                 <b>Basepairs</b>
               </TableCell>
               <TableCell
                 title="Length for which the collection of all contigs of that length or longer covers at least 50% of the total length of the assembled contigs"
-                align="center"
-              >
+                align="center">
                 <b>N50</b>
               </TableCell>
               <TableCell
                 title="Number of missassembled contigs in the assembly"
-                align="center"
-              >
+                align="center">
                 <b>Misassembled contigs</b>
+              </TableCell>
+              <TableCell title="Total of 'N's in assembly basepairs">
+                <b>Number of "N" basepais</b>
               </TableCell>
             </TableRow>
           </TableHead>
@@ -289,8 +286,8 @@ class ReportOverview extends Component {
                     {row.original.contigs !== 0 ? (
                       ""
                     ) : (
-                      <ErrorIcon style={{ color: red[500] }} />
-                    )}
+                        <ErrorIcon style={{ color: red[500] }} />
+                      )}
                   </TableCell>
                   <TableCell align="right">{row.original.contigs}</TableCell>
                   <TableCell align="right">{row.original.basepairs}</TableCell>
@@ -303,12 +300,12 @@ class ReportOverview extends Component {
                       ? row.original.mapped_reads.toFixed(4)
                       : row.original.mapped_reads}
                   </TableCell>
+                  <TableCell align="right">{row.original.Ns}</TableCell>
                   <TableCell align="right">{row.filtered.contigs}</TableCell>
                   <TableCell align="right">{row.filtered.basepairs}</TableCell>
                   <TableCell align="right">{row.filtered.N50}</TableCell>
-                  <TableCell align="right">
-                    {row.filtered.misassembled_contigs}
-                  </TableCell>
+                  <TableCell align="right">{row.filtered.misassembled_contigs}</TableCell>
+                  <TableCell align="right">{row.filtered.Ns}</TableCell>
                 </TableRow>
               )
             )}
@@ -360,12 +357,26 @@ class ReportOverview extends Component {
 
     const aboutUs = (
       <div>
-        <ReactMarkdown
-          plugins={[gfm]}
-          children={
-            " # Testing Markdown. This is a test to appease the *master*. "
-          }
-        />
+        <Typography>
+          LMAS is developed at the 
+          <Link href="http://darwin.phyloviz.net/wiki/doku.php" onClick={preventDefault}>
+            Molecular Microbiology and Infection Unit (UMMI)
+          </Link>
+          at the 
+          <Link href="https://imm.medicina.ulisboa.pt/en/" onClick={preventDefault}>
+            Instituto de Medicina Molecular Joao Antunes
+          </Link>
+          , in collaboration with 
+          <Link href="https://morangiladlab.com/" onClick={preventDefault}>
+            Microbiology, Advanced Genomics and Infection Control Applications Laboratory (MAGICAL)
+          </Link>
+           at the 
+          <Link href="https://morangiladlab.com/" onClick={preventDefault}>
+            Microbiology, Advanced Genomics and Infection Control Applications Laboratory (MAGICAL)
+          </Link>
+          Faculty of Health Sciences, Ben-Gurion University of the Negev
+          This project is licensed under the GPLv3 license.
+        </Typography>
       </div>
     );
 
@@ -606,6 +617,12 @@ class ReportOverview extends Component {
                     <TableCell title="Ratio of the length of alignable assembled sequence to covered sequence on the reference">
                       <b>Multiplicity</b>
                     </TableCell>
+                    <TableCell title="Ratio of the length of alignable assembled sequence to total basepairs in the aligned contings">
+                      <b>Validity</b>
+                    </TableCell>
+                    <TableCell title="Cost of the assembly (multiplicity over validity)">
+                      <b>Parsimony</b>
+                    </TableCell>
                     <TableCell title="Ratio of identical basepairs in all aligned contigs to the reference">
                       <b>Identity</b>
                     </TableCell>
@@ -633,6 +650,9 @@ class ReportOverview extends Component {
                     <TableCell title="Total basepairs aligned to to the reference">
                       <b>Aligned Basepairs</b>
                     </TableCell>
+                    <TableCell title="Total of 'N's in basepairs aligned to to the reference">
+                      <b>Number of "N" basepais</b>
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -645,8 +665,8 @@ class ReportOverview extends Component {
                         {row.aligned_contigs !== 0 ? (
                           ""
                         ) : (
-                          <ErrorIcon style={{ color: red[500] }} />
-                        )}
+                            <ErrorIcon style={{ color: red[500] }} />
+                          )}
                       </TableCell>
                       <TableCell align="right">
                         {row.contiguity !== 0
@@ -657,6 +677,16 @@ class ReportOverview extends Component {
                         {row.multiplicity !== 0
                           ? row.multiplicity.toFixed(4)
                           : row.multiplicity}
+                      </TableCell>
+                      <TableCell align="right">
+                        {row.validity !== 0
+                          ? row.validity.toFixed(4)
+                          : row.validity}
+                      </TableCell>
+                      <TableCell align="right">
+                        {row.parsimony !== 0
+                          ? row.parsimony.toFixed(4)
+                          : row.parsimony}
                       </TableCell>
                       <TableCell align="right">
                         {row.identity !== 0
@@ -680,9 +710,8 @@ class ReportOverview extends Component {
                       <TableCell align="right">{row.L90}</TableCell>
                       <TableCell align="right">{row.NA50}</TableCell>
                       <TableCell align="right">{row.NG50}</TableCell>
-                      <TableCell align="right">
-                        {row.aligned_basepairs}
-                      </TableCell>
+                      <TableCell align="right">{row.aligned_basepairs}</TableCell>
+                      <TableCell align="right">{row.Ns}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -712,26 +741,26 @@ class ReportOverview extends Component {
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
               ].completness === "undefined" ? (
-                <div />
-              ) : (
-                <Plot
-                  data={
-                    this.state.mainPlotData[this.state.buttonOption].PlotData[
-                      this.state.dropdownOption
-                    ].completness.data
-                  }
-                  layout={
-                    this.state.mainPlotData[this.state.buttonOption].PlotData[
-                      this.state.dropdownOption
-                    ].completness.layout
-                  }
-                  useResizeHandler={true}
-                  style={{ width: "100%", height: "100%" }}
-                  line={{
-                    width: 1,
-                  }}
-                />
-              )}
+                  <div />
+                ) : (
+                  <Plot
+                    data={
+                      this.state.mainPlotData[this.state.buttonOption].PlotData[
+                        this.state.dropdownOption
+                      ].completness.data
+                    }
+                    layout={
+                      this.state.mainPlotData[this.state.buttonOption].PlotData[
+                        this.state.dropdownOption
+                      ].completness.layout
+                    }
+                    useResizeHandler={true}
+                    style={{ width: "100%", height: "100%" }}
+                    line={{
+                      width: 1,
+                    }}
+                  />
+                )}
               <Typography align="center">
                 Number of contigs per breath of coverage of the reference per
                 assembler. Data for assemblers who fail to produce sequences
@@ -744,31 +773,31 @@ class ReportOverview extends Component {
                 align="center"
                 style={{ color: "#4A690C" }}
               >
-                {this.state.dropdownOption} Lx Metric
+                <i>{this.state.dropdownOption}</i> Lx Metric
               </Typography>
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
               ].lx === "undefined" ? (
-                <div />
-              ) : (
-                <Plot
-                  data={
-                    this.state.mainPlotData[this.state.buttonOption].PlotData[
-                      this.state.dropdownOption
-                    ].lx.data
-                  }
-                  layout={
-                    this.state.mainPlotData[this.state.buttonOption].PlotData[
-                      this.state.dropdownOption
-                    ].lx.layout
-                  }
-                  useResizeHandler={true}
-                  style={{ width: "100%", height: "100%" }}
-                  line={{
-                    width: 1,
-                  }}
-                />
-              )}
+                  <div />
+                ) : (
+                  <Plot
+                    data={
+                      this.state.mainPlotData[this.state.buttonOption].PlotData[
+                        this.state.dropdownOption
+                      ].lx.data
+                    }
+                    layout={
+                      this.state.mainPlotData[this.state.buttonOption].PlotData[
+                        this.state.dropdownOption
+                      ].lx.layout
+                    }
+                    useResizeHandler={true}
+                    style={{ width: "100%", height: "100%" }}
+                    line={{
+                      width: 1,
+                    }}
+                  />
+                )}
               <Typography align="center">
                 Minimal number of contigs that cover x percent of the sequence
                 of the reference, ranging from 0 to 100, per assembler. Data for
@@ -800,26 +829,26 @@ class ReportOverview extends Component {
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
               ].nax === "undefined" ? (
-                <div />
-              ) : (
-                <Plot
-                  data={
-                    this.state.mainPlotData[this.state.buttonOption].PlotData[
-                      this.state.dropdownOption
-                    ].nax.data
-                  }
-                  layout={
-                    this.state.mainPlotData[this.state.buttonOption].PlotData[
-                      this.state.dropdownOption
-                    ].nax.layout
-                  }
-                  useResizeHandler={true}
-                  style={{ width: "100%", height: "100%" }}
-                  line={{
-                    width: 1,
-                  }}
-                />
-              )}
+                  <div />
+                ) : (
+                  <Plot
+                    data={
+                      this.state.mainPlotData[this.state.buttonOption].PlotData[
+                        this.state.dropdownOption
+                      ].nax.data
+                    }
+                    layout={
+                      this.state.mainPlotData[this.state.buttonOption].PlotData[
+                        this.state.dropdownOption
+                      ].nax.layout
+                    }
+                    useResizeHandler={true}
+                    style={{ width: "100%", height: "100%" }}
+                    line={{
+                      width: 1,
+                    }}
+                  />
+                )}
               <Typography align="center">
                 Length for which the collection of all aligned contigs of that
                 length or longer covers at least x percent of the total length
@@ -839,26 +868,26 @@ class ReportOverview extends Component {
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
               ].ngx === "undefined" ? (
-                <div />
-              ) : (
-                <Plot
-                  data={
-                    this.state.mainPlotData[this.state.buttonOption].PlotData[
-                      this.state.dropdownOption
-                    ].ngx.data
-                  }
-                  layout={
-                    this.state.mainPlotData[this.state.buttonOption].PlotData[
-                      this.state.dropdownOption
-                    ].ngx.layout
-                  }
-                  useResizeHandler={true}
-                  style={{ width: "100%", height: "100%" }}
-                  line={{
-                    width: 1,
-                  }}
-                />
-              )}
+                  <div />
+                ) : (
+                  <Plot
+                    data={
+                      this.state.mainPlotData[this.state.buttonOption].PlotData[
+                        this.state.dropdownOption
+                      ].ngx.data
+                    }
+                    layout={
+                      this.state.mainPlotData[this.state.buttonOption].PlotData[
+                        this.state.dropdownOption
+                      ].ngx.layout
+                    }
+                    useResizeHandler={true}
+                    style={{ width: "100%", height: "100%" }}
+                    line={{
+                      width: 1,
+                    }}
+                  />
+                )}
               <Typography align="center">
                 Length for which the collection of all aligned contigs of that
                 length or longer covers at least x percentage of the sequence of
@@ -874,33 +903,33 @@ class ReportOverview extends Component {
       const gridPlotWideRef_1 = (
         <div style={{ marginTop: "20px" }}>
           <Typography variant="h6" align="center" style={{ color: "#4A690C" }}>
-            {this.state.dropdownOption} Phred-like Score Metric
+            {this.state.dropdownOption} PLS Metric
           </Typography>
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
           ].phred === "undefined" ? (
-            <div />
-          ) : (
-            <Plot
-              data={
-                this.state.mainPlotData[this.state.buttonOption].PlotData[
-                  this.state.dropdownOption
-                ].phred.data
-              }
-              layout={
-                this.state.mainPlotData[this.state.buttonOption].PlotData[
-                  this.state.dropdownOption
-                ].phred.layout
-              }
-              useResizeHandler={true}
-              style={{ width: "100%", height: "100%" }}
-              line={{
-                width: 1,
-              }}
-            />
-          )}
+              <div />
+            ) : (
+              <Plot
+                data={
+                  this.state.mainPlotData[this.state.buttonOption].PlotData[
+                    this.state.dropdownOption
+                  ].phred.data
+                }
+                layout={
+                  this.state.mainPlotData[this.state.buttonOption].PlotData[
+                    this.state.dropdownOption
+                  ].phred.layout
+                }
+                useResizeHandler={true}
+                style={{ width: "100%", height: "100%" }}
+                line={{
+                  width: 1,
+                }}
+              />
+            )}
           <Typography align="center">
-            HOW DO I EXPLAIN THIS per contig, per assembler. Data for assemblers
+            Phred-like score per contig, per assembler. Data for assemblers
             who fail to produce sequences that align to the reference aren't
             present.
           </Typography>
@@ -915,26 +944,26 @@ class ReportOverview extends Component {
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
           ].gaps === "undefined" ? (
-            <div />
-          ) : (
-            <Plot
-              data={
-                this.state.mainPlotData[this.state.buttonOption].PlotData[
-                  this.state.dropdownOption
-                ].gaps.data
-              }
-              layout={
-                this.state.mainPlotData[this.state.buttonOption].PlotData[
-                  this.state.dropdownOption
-                ].gaps.layout
-              }
-              useResizeHandler={true}
-              style={{ width: "100%", height: "100%" }}
-              line={{
-                width: 1,
-              }}
-            />
-          )}
+              <div />
+            ) : (
+              <Plot
+                data={
+                  this.state.mainPlotData[this.state.buttonOption].PlotData[
+                    this.state.dropdownOption
+                  ].gaps.data
+                }
+                layout={
+                  this.state.mainPlotData[this.state.buttonOption].PlotData[
+                    this.state.dropdownOption
+                  ].gaps.layout
+                }
+                useResizeHandler={true}
+                style={{ width: "100%", height: "100%" }}
+                line={{
+                  width: 1,
+                }}
+              />
+            )}
           <Typography align="center">
             Location of gaps in comparison to the reference sequence, per
             assembler. Length of gap, in basepairs, is available as hoover text.
@@ -947,32 +976,32 @@ class ReportOverview extends Component {
 
       const gridPlotWideRef_3 = (
         <div style={{ marginTop: "20px" }}>
-          <Typography variant="h5" align="center" style={{ color: "#4A690C" }}>
+          <Typography variant="h6" align="center" style={{ color: "#4A690C" }}>
             {this.state.dropdownOption} SNPs
           </Typography>
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
           ].snps === "undefined" ? (
-            <div />
-          ) : (
-            <Plot
-              data={
-                this.state.mainPlotData[this.state.buttonOption].PlotData[
-                  this.state.dropdownOption
-                ].snps.data
-              }
-              layout={
-                this.state.mainPlotData[this.state.buttonOption].PlotData[
-                  this.state.dropdownOption
-                ].snps.layout
-              }
-              useResizeHandler={true}
-              style={{ width: "100%", height: "100%" }}
-              line={{
-                width: 1,
-              }}
-            />
-          )}
+              <div />
+            ) : (
+              <Plot
+                data={
+                  this.state.mainPlotData[this.state.buttonOption].PlotData[
+                    this.state.dropdownOption
+                  ].snps.data
+                }
+                layout={
+                  this.state.mainPlotData[this.state.buttonOption].PlotData[
+                    this.state.dropdownOption
+                  ].snps.layout
+                }
+                useResizeHandler={true}
+                style={{ width: "100%", height: "100%" }}
+                line={{
+                  width: 1,
+                }}
+              />
+            )}
           <Typography align="center">
             Location of substitutions in comparison to the reference sequence,
             per assembler. The top plot represents the histogram of the
