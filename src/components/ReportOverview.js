@@ -358,24 +358,29 @@ class ReportOverview extends Component {
     const aboutUs = (
       <div>
         <Typography>
-          LMAS is developed at the 
+          LMAS is developed at the
           <Link href="http://darwin.phyloviz.net/wiki/doku.php" onClick={preventDefault}>
             Molecular Microbiology and Infection Unit (UMMI)
           </Link>
-          at the 
+          at the
           <Link href="https://imm.medicina.ulisboa.pt/en/" onClick={preventDefault}>
             Instituto de Medicina Molecular Joao Antunes
           </Link>
-          , in collaboration with 
+          , in collaboration with
           <Link href="https://morangiladlab.com/" onClick={preventDefault}>
             Microbiology, Advanced Genomics and Infection Control Applications Laboratory (MAGICAL)
           </Link>
-           at the 
-          <Link href="https://morangiladlab.com/" onClick={preventDefault}>
-            Microbiology, Advanced Genomics and Infection Control Applications Laboratory (MAGICAL)
+          at the
+          <Link href="https://in.bgu.ac.il/en/fohs/Pages/default.aspx" onClick={preventDefault}>
+            Faculty of Health Sciences, Ben-Gurion University of the Negev
           </Link>
-          Faculty of Health Sciences, Ben-Gurion University of the Negev
-          This project is licensed under the GPLv3 license.
+          .
+
+          This project is licensed under the
+          <Link href="https://github.com/cimendes/LMAS/blob/main/LICENSE" onClick={preventDefault}>
+            GPLv3 license
+          </Link>
+          .
         </Typography>
       </div>
     );
@@ -488,13 +493,6 @@ class ReportOverview extends Component {
                 align to any of the reference genomes per assembler. Unmapped
                 contigs are represented as red circles. Only contigs larger than{" "}
                 {_minContigSize} are considered.
-                <Link
-                  href={`plots/${this.state.buttonOption}_contig_size_distribution.html`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open plot in full size.
-                </Link>
               </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -583,7 +581,7 @@ class ReportOverview extends Component {
             <b>{this.state.buttonOption}</b>
           </Typography>
           <Typography variant="h5" style={{ color: "#4A690C" }}>
-            {this.state.dropdownOption}
+            <i>{this.state.dropdownOption}</i>
           </Typography>
           <Typography variant="subtitle1">
             <b>Size:</b>{" "}
@@ -736,7 +734,7 @@ class ReportOverview extends Component {
                 align="center"
                 style={{ color: "#4A690C" }}
               >
-                {this.state.dropdownOption} Genome Fragmentation
+                <i>{this.state.dropdownOption}</i> Genome Fragmentation
               </Typography>
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
@@ -799,7 +797,7 @@ class ReportOverview extends Component {
                   />
                 )}
               <Typography align="center">
-                Minimal number of contigs that cover x percent of the sequence
+                Minimal number of contigs that cover <i>x</i> percent of the sequence
                 of the reference, ranging from 0 to 100, per assembler. Data for
                 assemblers who fail to produce sequences that align to the
                 reference aren't present.
@@ -824,7 +822,7 @@ class ReportOverview extends Component {
                 align="center"
                 style={{ color: "#4A690C" }}
               >
-                {this.state.dropdownOption} NAx Metric
+                <i>{this.state.dropdownOption}</i> NAx Metric
               </Typography>
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
@@ -851,7 +849,7 @@ class ReportOverview extends Component {
                 )}
               <Typography align="center">
                 Length for which the collection of all aligned contigs of that
-                length or longer covers at least x percent of the total length
+                length or longer covers at least <i>x</i> percent of the total length
                 of the aligned assembled contigs, ranging from 0 to 100, per
                 assembler. Data for assemblers who fail to produce sequences
                 that align to the reference aren't present.
@@ -863,7 +861,7 @@ class ReportOverview extends Component {
                 align="center"
                 style={{ color: "#4A690C" }}
               >
-                {this.state.dropdownOption} NGx Metric
+                <i>{this.state.dropdownOption}</i> NGx Metric
               </Typography>
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
@@ -890,7 +888,7 @@ class ReportOverview extends Component {
                 )}
               <Typography align="center">
                 Length for which the collection of all aligned contigs of that
-                length or longer covers at least x percentage of the sequence of
+                length or longer covers at least <i>x</i> percentage of the sequence of
                 the reference, ranging from 0 to 100, per assembler. Data for
                 assemblers who fail to produce sequences that align to the
                 reference aren't present.
@@ -903,7 +901,7 @@ class ReportOverview extends Component {
       const gridPlotWideRef_1 = (
         <div style={{ marginTop: "20px" }}>
           <Typography variant="h6" align="center" style={{ color: "#4A690C" }}>
-            {this.state.dropdownOption} PLS Metric
+            <i>{this.state.dropdownOption}</i> PLS Metric
           </Typography>
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
@@ -939,7 +937,7 @@ class ReportOverview extends Component {
       const gridPlotWideRef_2 = (
         <div style={{ marginTop: "20px" }}>
           <Typography variant="h6" align="center" style={{ color: "#4A690C" }}>
-            {this.state.dropdownOption} Gaps
+            <i>{this.state.dropdownOption}</i> Gaps
           </Typography>
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
@@ -977,7 +975,7 @@ class ReportOverview extends Component {
       const gridPlotWideRef_3 = (
         <div style={{ marginTop: "20px" }}>
           <Typography variant="h6" align="center" style={{ color: "#4A690C" }}>
-            {this.state.dropdownOption} SNPs
+            <i>{this.state.dropdownOption}</i> SNPs
           </Typography>
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
