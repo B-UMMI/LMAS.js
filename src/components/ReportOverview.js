@@ -150,7 +150,7 @@ class ReportOverview extends Component {
       },
       {
         field: "container",
-        width: 200,
+        width: 350,
         headerAlign: "center",
         align: "center",
         renderHeader: () => <strong>{"Container"}</strong>,
