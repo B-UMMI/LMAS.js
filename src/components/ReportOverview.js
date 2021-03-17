@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import Aux from "../hoc/Aux";
 import classesRE from "./ReportOverview.css";
-import LamaLogo from "../images/lama.jpg";
+import LamaLogo from "../images/lmas_logo_wide.jpg";
 
 // Material-UI ExpansionPanel components
 import Accordion from "@material-ui/core/Accordion";
@@ -45,6 +45,14 @@ import Plot from "react-plotly.js";
 // React-Markdown
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
+
+const linkRenderer = (props) => {
+  return (
+    <a href={props.href} target="_blank" rel="noopener noreferrer">
+      {props.children}
+    </a>
+  );
+};
 
 const style = {
   buttonBar: {
@@ -91,6 +99,7 @@ class ReportOverview extends Component {
     mainDataTables: _mainDataTables,
     mainPlotData: _mainDataPlots,
     sampleData: _sampleData,
+    overviewMD: _overviewMD
   };
 
   plotChangeHandler = (id) => {
@@ -118,7 +127,7 @@ class ReportOverview extends Component {
       var str = "";
       for (var p in obj) {
         if (obj.hasOwnProperty(p)) {
-          str += p + ":" + obj[p].reads + " reads;\n\n";
+          str += `${p}: ${obj[p].reads} reads; `;
         }
       }
       return str;
@@ -130,21 +139,25 @@ class ReportOverview extends Component {
       {
         field: "assembler",
         width: 200,
-        // headerName: "Assembler",
         renderHeader: () => <strong>{"Assembler"}</strong>,
       },
       {
         field: "version",
         width: 200,
-        // headerName: "Version",
         headerAlign: "center",
         align: "center",
         renderHeader: () => <strong>{"Version"}</strong>,
       },
       {
+        field: "container",
+        width: 200,
+        headerAlign: "center",
+        align: "center",
+        renderHeader: () => <strong>{"Container"}</strong>,
+      },
+      {
         field: "avgTime",
         width: 200,
-        // headerName: "Avg Time",
         headerAlign: "center",
         align: "center",
         renderHeader: () => <strong>{"Avg Time"}</strong>,
@@ -160,7 +173,6 @@ class ReportOverview extends Component {
       {
         field: "max_rss",
         width: 200,
-        // headerName: "Max Memory (GB)",
         type: "number",
         headerAlign: "center",
         renderHeader: () => <strong>{"Max Memory (GB)"}</strong>,
@@ -168,7 +180,6 @@ class ReportOverview extends Component {
       {
         field: "avgRead",
         width: 200,
-        // headerName: "Average Read (GB)",
         type: "number",
         headerAlign: "center",
         renderHeader: () => <strong>{"Average Read (GB)"}</strong>,
@@ -176,7 +187,6 @@ class ReportOverview extends Component {
       {
         field: "avgWrite",
         width: 200,
-        // headerName: "Average Write (GB)",
         type: "number",
         headerAlign: "center",
         renderHeader: () => <strong>{"Average Write (GB)"}</strong>,
@@ -188,7 +198,6 @@ class ReportOverview extends Component {
         <DataGrid
           rows={this.state.overviewData}
           columns={overviewColumns}
-          // rowHeight={38}
           disableSelectionOnClick={true}
           hideFooter={true}
         />
@@ -216,7 +225,7 @@ class ReportOverview extends Component {
                 <b>Original Assembly</b>
               </TableCell>
               <TableCell
-                colSpan={4}
+                colSpan={5}
                 align="center"
                 style={{ borderLeft: "1px solid rgba(224, 224, 224, 1)" }}
               >
@@ -323,61 +332,69 @@ class ReportOverview extends Component {
           justify="center"
           alignItems="center"
         >
-          <Grid item xs={6}>
-            <Card style={{ maxWidth: 345 }}>
-              <CardMedia
-                style={{ height: 500 }}
-                image={LamaLogo}
-                title="Lama"
-              />
-            </Card>
-          </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={8}>
             <Typography variant="h4" style={{ color: "#4A690C" }}>
-              Report Overview
+              Input Data
             </Typography>
-            <div style={{ marginTop: "5%" }}>
+            <div style={{ marginTop: "2%" }}>
               <Typography variant="h5">
                 <b>References:</b> {referenceFile}
               </Typography>
               <Typography variant="h5">
                 <b>Samples:</b> {sampleDataString}
               </Typography>
+            </div>
+            <div style={{ marginTop: "2%" }}>
+              <Typography variant="h4" style={{ color: "#4A690C" }}>
+                About
+              </Typography>
               <ReactMarkdown
+                renderers={{ link: linkRenderer }}
                 plugins={[gfm]}
-                children={
-                  " # Testing Markdown. This is a test to appease the *master*. "
-                }
+                children={this.state.overviewMD}
               />
             </div>
+          </Grid>
+          <Grid item xs={4}>
+            <Card style={{ maxWidth: 500, borderRadius: 0, boxShadow: "none" }}>
+              <CardMedia
+                component="img"
+                alt="Contemplative Lama"
+                //style={{ height: 200 }}
+                image={LamaLogo}
+                title="Lama"
+              />
+            </Card>
           </Grid>
         </Grid>
       </Aux>
     );
 
     const aboutUs = (
-      <div>
+      <div style={{ marginTop: "2%", marginBottom: "2%" }}>
         <Typography>
-          LMAS is developed at the
-          <Link href="http://darwin.phyloviz.net/wiki/doku.php" onClick={preventDefault}>
+          LMAS is developed at the {" "}
+          <Link href="http://darwin.phyloviz.net/wiki/doku.php" target="_blank" rel="noopener noreferrer">
             Molecular Microbiology and Infection Unit (UMMI)
           </Link>
-          at the
-          <Link href="https://imm.medicina.ulisboa.pt/en/" onClick={preventDefault}>
+          {" "}at the {" "}
+          <Link href="https://imm.medicina.ulisboa.pt/en/" target="_blank" rel="noopener noreferrer">
             Instituto de Medicina Molecular Joao Antunes
           </Link>
-          , in collaboration with
-          <Link href="https://morangiladlab.com/" onClick={preventDefault}>
+          , in collaboration with{" "}
+          <Link href="https://morangiladlab.com/" target="_blank" rel="noopener noreferrer">
             Microbiology, Advanced Genomics and Infection Control Applications Laboratory (MAGICAL)
           </Link>
-          at the
-          <Link href="https://in.bgu.ac.il/en/fohs/Pages/default.aspx" onClick={preventDefault}>
+          {" "}at the{" "}
+          <Link href="https://in.bgu.ac.il/en/fohs/Pages/default.aspx" target="_blank" rel="noopener noreferrer">
             Faculty of Health Sciences, Ben-Gurion University of the Negev
           </Link>
-          .
-
-          This project is licensed under the
-          <Link href="https://github.com/cimendes/LMAS/blob/main/LICENSE" onClick={preventDefault}>
+          .{" "}
+        </Typography>
+        <br />
+        <Typography>
+          This project is licensed under the {" "}
+          <Link href="https://github.com/cimendes/LMAS/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">
             GPLv3 license
           </Link>
           .
