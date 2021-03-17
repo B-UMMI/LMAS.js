@@ -11,13 +11,13 @@
 
 ## Overview
 
-[LMAS](https://github.com/cimendes/LMAS) is an automated workflow enabling the benchmarking of traditional and metagenomic prokaryotic de novo assembly software using defined mock communities. The results are presented in an **interactive HTML report** where selected global and reference specific performance metrics can be explored.
+[LMAS](https://github.com/cimendes/LMAS) is an automated workflow enabling the benchmarking of traditional and metagenomic prokaryotic _de novo_ assembly software using defined mock communities. The results are presented in an **interactive HTML report** where selected global and reference specific performance metrics can be explored.
 
-In this repo contains the source code for the interactive report that comes pre-packaged with [LMAS](https://github.com/cimendes/LMAS).
+This repo contains the source code for the interactive report that comes pre-packaged with [LMAS](https://github.com/cimendes/LMAS).
 
 ## Installation & Use
 
-This project uses `npx webpack` to compile a stanalone `main.js` file to be integrated into [LMAS](https://github.com/cimendes/LMAS)
+This project uses `npx webpack` to compile a standalone `main.js` file to be integrated into [LMAS](https://github.com/cimendes/LMAS).
 
 ### Re-create conda env
 
