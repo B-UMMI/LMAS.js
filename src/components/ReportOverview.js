@@ -109,7 +109,7 @@ class ReportOverview extends Component {
 
   tabChangeHandler = (value) => {
     console.log(value);
-    this.setState({ overviewButtonOption: value });
+    this.setState({ overviewButtonOption: value});
   };
 
   handleChange = (event) => {
@@ -259,7 +259,7 @@ class ReportOverview extends Component {
                 <b>Mapped reads</b>
               </TableCell>
               <TableCell title="Total of 'N's in assembly basepairs">
-                <b>Number of "N" basepais</b>
+                <b>Number of "N"s</b>
               </TableCell>
               <TableCell
                 title="Total number of contigs in the assembly"
@@ -282,7 +282,7 @@ class ReportOverview extends Component {
                 <b>Misassembled contigs</b>
               </TableCell>
               <TableCell title="Total of 'N's in assembly basepairs">
-                <b>Number of "N" basepais</b>
+                <b>Number of "N"s</b>
               </TableCell>
             </TableRow>
           </TableHead>
@@ -411,7 +411,7 @@ class ReportOverview extends Component {
                 <div style={style.buttonBar}>
                   <Button
                     style={style.button}
-                    className={classesRE.tabButton}
+                    className={`${this.state.overviewButtonOption === 0 && classesRE.tabButton}`}
                     onClick={() => {
                       this.tabChangeHandler(0);
                     }}
@@ -420,7 +420,7 @@ class ReportOverview extends Component {
                   </Button>
                   <Button
                     style={style.button}
-                    className={classesRE.tabButton}
+                    className={`${this.state.overviewButtonOption === 1 && classesRE.tabButton}`}
                     onClick={() => {
                       this.tabChangeHandler(1);
                     }}
@@ -429,7 +429,7 @@ class ReportOverview extends Component {
                   </Button>
                   <Button
                     style={style.button}
-                    className={classesRE.tabButton}
+                    className={`${this.state.overviewButtonOption === 2 && classesRE.tabButton}`}
                     onClick={() => {
                       this.tabChangeHandler(2);
                     }}
@@ -509,7 +509,7 @@ class ReportOverview extends Component {
                 Gray boxplots represent the size distribution of contigs that
                 align to any of the reference genomes per assembler. Unmapped
                 contigs are represented as red circles. Only contigs larger than{" "}
-                {_minContigSize} are considered.
+                {_minContigSize} basepairs are considered.
               </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -666,7 +666,7 @@ class ReportOverview extends Component {
                       <b>Aligned Basepairs</b>
                     </TableCell>
                     <TableCell title="Total of 'N's in basepairs aligned to to the reference">
-                      <b>Number of "N" basepais</b>
+                      <b>Number of "N"s</b>
                     </TableCell>
                   </TableRow>
                 </TableHead>
@@ -1054,7 +1054,7 @@ class ReportOverview extends Component {
                     <Button
                       key={id}
                       style={style.button}
-                      className={classesRE.tabButton}
+                      className={`${this.state.buttonOption === id && classesRE.tabButton}`}
                       onClick={() => {
                         this.plotChangeHandler(id);
                       }}
