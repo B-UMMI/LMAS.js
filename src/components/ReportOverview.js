@@ -229,7 +229,7 @@ class ReportOverview extends Component {
                 align="center"
                 style={{ borderLeft: "1px solid rgba(224, 224, 224, 1)" }}
               >
-                <b>Contigs > {_minContigSize} Basepairs</b>
+                <b>Contigs > {_minContigSize} bps</b>
               </TableCell>
             </TableRow>
             <TableRow>
@@ -246,7 +246,7 @@ class ReportOverview extends Component {
               <TableCell
                 title="Lenght on the largest contig in the assembly"
                 align="center">
-                <b>Largest contig (basepairs)</b>
+                <b>Largest contig (bps)</b>
               </TableCell>
               <TableCell
                 title="Length for which the collection of all contigs of that length or longer covers at least 50% of the total length of the assembled contigs"
