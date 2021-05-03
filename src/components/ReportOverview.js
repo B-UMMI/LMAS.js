@@ -229,7 +229,7 @@ class ReportOverview extends Component {
                 align="center"
                 style={{ borderLeft: "1px solid rgba(224, 224, 224, 1)" }}
               >
-                <b>Contigs > {_minContigSize}</b>
+                <b>Contigs > {_minContigSize} Basepairs</b>
               </TableCell>
             </TableRow>
             <TableRow>
@@ -246,7 +246,7 @@ class ReportOverview extends Component {
               <TableCell
                 title="Lenght on the largest contig in the assembly"
                 align="center">
-                <b>Max contig size</b>
+                <b>Largest contig (basepairs)</b>
               </TableCell>
               <TableCell
                 title="Length for which the collection of all contigs of that length or longer covers at least 50% of the total length of the assembled contigs"
@@ -256,10 +256,10 @@ class ReportOverview extends Component {
               <TableCell
                 title="Percentage of mapped reads to the assembly"
                 align="center">
-                <b>Mapped reads</b>
+                <b>Mapped reads (%)</b>
               </TableCell>
               <TableCell title="Total of 'N's in assembly basepairs">
-                <b>Number of "N"s</b>
+                <b>#Ns</b>
               </TableCell>
               <TableCell
                 title="Total number of contigs in the assembly"
@@ -282,7 +282,7 @@ class ReportOverview extends Component {
                 <b>Misassembled contigs</b>
               </TableCell>
               <TableCell title="Total of 'N's in assembly basepairs">
-                <b>Number of "N"s</b>
+                <b>#Ns</b>
               </TableCell>
             </TableRow>
           </TableHead>
@@ -666,7 +666,7 @@ class ReportOverview extends Component {
                       <b>Aligned Basepairs</b>
                     </TableCell>
                     <TableCell title="Total of 'N's in basepairs aligned to to the reference">
-                      <b>Number of "N"s</b>
+                      <b>#Ns</b>
                     </TableCell>
                   </TableRow>
                 </TableHead>
