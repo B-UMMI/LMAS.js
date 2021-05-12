@@ -109,7 +109,7 @@ class ReportOverview extends Component {
 
   tabChangeHandler = (value) => {
     console.log(value);
-    this.setState({ overviewButtonOption: value});
+    this.setState({ overviewButtonOption: value });
   };
 
   handleChange = (event) => {
@@ -127,7 +127,7 @@ class ReportOverview extends Component {
       var str = "";
       for (var p in obj) {
         if (obj.hasOwnProperty(p)) {
-          str += `${p}: ${obj[p].reads} reads; `;
+          str += `${p}: ${obj[p].reads} read pairs; `;
         }
       }
       return str;
@@ -329,10 +329,10 @@ class ReportOverview extends Component {
           container
           spacing={3}
           direction="row"
-          justify="center"
-          alignItems="center"
+          justify="left"
+          alignItems="left"
         >
-          <Grid item xs={8}>
+          <Grid item xs={7}>
             <Typography variant="h4" style={{ color: "#4A690C" }}>
               Input Data
             </Typography>
@@ -344,7 +344,20 @@ class ReportOverview extends Component {
                 <b>Samples:</b> {sampleDataString}
               </Typography>
             </div>
-            <div style={{ marginTop: "2%" }}>
+          </Grid>
+          <Grid item xs={5} alignItems="right" justify="right">
+            <Card style={{ maxWidth: 650, borderRadius: 0, boxShadow: "none" }}>
+              <CardMedia
+                component="img"
+                alt="Contemplative Lama"
+                //style={{ height: 200 }}
+                image={LamaLogo}
+                title="Lama"
+              />
+            </Card>
+          </Grid>
+          <Grid item xs={0}>
+            <div>
               <Typography variant="h4" style={{ color: "#4A690C" }}>
                 About
               </Typography>
@@ -354,17 +367,6 @@ class ReportOverview extends Component {
                 children={this.state.overviewMD}
               />
             </div>
-          </Grid>
-          <Grid item xs={4}>
-            <Card style={{ maxWidth: 500, borderRadius: 0, boxShadow: "none" }}>
-              <CardMedia
-                component="img"
-                alt="Contemplative Lama"
-                //style={{ height: 200 }}
-                image={LamaLogo}
-                title="Lama"
-              />
-            </Card>
           </Grid>
         </Grid>
       </Aux>
