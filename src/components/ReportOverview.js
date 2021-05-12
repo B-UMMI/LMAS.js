@@ -374,34 +374,75 @@ class ReportOverview extends Component {
 
     const aboutUs = (
       <div style={{ marginTop: "2%", marginBottom: "2%" }}>
-        <Typography>
-          LMAS is developed at the {" "}
-          <Link href="http://darwin.phyloviz.net/wiki/doku.php" target="_blank" rel="noopener noreferrer">
-            Molecular Microbiology and Infection Unit (UMMI)
+        <div style={{ display:'flex', justifyContent:'center' }}>
+            <Card style={{ maxWidth: 500, borderRadius: 0, boxShadow: "none" }}>
+              <CardMedia
+                component="img"
+                alt="Contemplative Lama"
+                //style={{ height: 200 }}
+                image={LamaLogo}
+                title="Lama"
+              />
+            </Card>
+        </div>
+        <div style={{ marginTop: "2%", marginBottom: "2%" }}>
+          <Typography>
+            LMAS is an automated workflow enabling the benchmarking of traditional and metagenomic prokaryotic <i>de novo</i> assembly software using defined mock communities.
+          It's implemented in {" "}
+            <Link href="https://www.nextflow.io/" target="_blank" rel="noopener noreferrer">
+              Nextflow
           </Link>
-          {" "}at the {" "}
-          <Link href="https://imm.medicina.ulisboa.pt/en/" target="_blank" rel="noopener noreferrer">
-            Instituto de Medicina Molecular Joao Antunes
+          , providing flexibility and ensure the transparency and reproducibility of the results. LMAS relies on the use of containers, such as {" "}
+            <Link href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">
+              Docker
+          </Link>
+          , for each assembler, allowing versions to be tracked and updated easily.  It can be deployed effortlessly in any UNIX-based system, from local machines to high-performance computing clusters.
+        </Typography>
+          <br />
+          <Typography>
+            The LMAS workflow sourcecode is available on GitHub under {" "}
+            <Link href="https://github.com/cimendes/LMAS" target="_blank" rel="noopener noreferrer">
+              https://github.com/cimendes/LMAS
+          </Link>
+          and the report source code is available at {" "}
+            <Link href="https://github.com/cimendes/lmas_report" target="_blank" rel="noopener noreferrer">
+              https://github.com/cimendes/lmas_report
+          </Link>
+          . The documentation is available on ReadTheDocs at {" "}
+            <Link href="https://lmas.readthedocs.io" target="_blank" rel="noopener noreferrer">
+              https://lmas.readthedocs.io
+          </Link>
+          </Typography>
+          <br />
+          <Typography>
+            LMAS is developed at the {" "}
+            <Link href="http://darwin.phyloviz.net/wiki/doku.php" target="_blank" rel="noopener noreferrer">
+              Molecular Microbiology and Infection Unit (UMMI)
+          </Link>
+            {" "}at the {" "}
+            <Link href="https://imm.medicina.ulisboa.pt/en/" target="_blank" rel="noopener noreferrer">
+              Instituto de Medicina Molecular Joao Antunes
           </Link>
           , in collaboration with{" "}
-          <Link href="https://morangiladlab.com/" target="_blank" rel="noopener noreferrer">
-            Microbiology, Advanced Genomics and Infection Control Applications Laboratory (MAGICAL)
+            <Link href="https://morangiladlab.com/" target="_blank" rel="noopener noreferrer">
+              Microbiology, Advanced Genomics and Infection Control Applications Laboratory (MAGICAL)
           </Link>
-          {" "}at the{" "}
-          <Link href="https://in.bgu.ac.il/en/fohs/Pages/default.aspx" target="_blank" rel="noopener noreferrer">
-            Faculty of Health Sciences, Ben-Gurion University of the Negev
+            {" "}at the{" "}
+            <Link href="https://in.bgu.ac.il/en/fohs/Pages/default.aspx" target="_blank" rel="noopener noreferrer">
+              Faculty of Health Sciences, Ben-Gurion University of the Negev
           </Link>
           .{" "}
-        </Typography>
-        <br />
-        <Typography>
-          This project is licensed under the {" "}
-          <Link href="https://github.com/cimendes/LMAS/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">
-            GPLv3 license
+          </Typography>
+          <br />
+          <Typography>
+            This project is licensed under the {" "}
+            <Link href="https://github.com/cimendes/LMAS/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">
+              GPLv3 license
           </Link>
           .
         </Typography>
-      </div>
+        </div>
+      </div >
     );
 
     const accordion = (
