@@ -502,7 +502,7 @@ class ReportOverview extends Component {
             <MenuItem value={"Global"}>Global</MenuItem>
             {referenceNames.map((id) => (
               <MenuItem key={id} value={id}>
-                {id}
+                {id.replace(/_/g, ' ')}
               </MenuItem>
             ))}
           </Select>
@@ -641,7 +641,7 @@ class ReportOverview extends Component {
             <b>{this.state.buttonOption}</b>
           </Typography>
           <Typography variant="h5" style={{ color: "#4A690C" }}>
-            <i>{this.state.dropdownOption}</i>
+            <i>{this.state.dropdownOption.replace(/_/g, ' ')}</i>
           </Typography>
           <Typography variant="subtitle1">
             <b>Size:</b>{" "}
@@ -794,7 +794,7 @@ class ReportOverview extends Component {
                 align="center"
                 style={{ color: "#4A690C" }}
               >
-                <i>{this.state.dropdownOption}</i> Genome Fragmentation
+                <i>{this.state.dropdownOption.replace(/_/g, ' ')}</i> Genome Fragmentation
               </Typography>
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
@@ -831,7 +831,7 @@ class ReportOverview extends Component {
                 align="center"
                 style={{ color: "#4A690C" }}
               >
-                <i>{this.state.dropdownOption}</i> Lx Metric
+                <i>{this.state.dropdownOption.replace(/_/g, ' ')}</i> Lx Metric
               </Typography>
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
@@ -882,7 +882,7 @@ class ReportOverview extends Component {
                 align="center"
                 style={{ color: "#4A690C" }}
               >
-                <i>{this.state.dropdownOption}</i> NAx Metric
+                <i>{this.state.dropdownOption.replace(/_/g, ' ')}</i> NAx Metric
               </Typography>
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
@@ -921,7 +921,7 @@ class ReportOverview extends Component {
                 align="center"
                 style={{ color: "#4A690C" }}
               >
-                <i>{this.state.dropdownOption}</i> NGx Metric
+                <i>{this.state.dropdownOption.replace(/_/g, ' ')}</i> NGx Metric
               </Typography>
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
@@ -961,7 +961,7 @@ class ReportOverview extends Component {
       const gridPlotWideRef_1 = (
         <div style={{ marginTop: "20px" }}>
           <Typography variant="h6" align="center" style={{ color: "#4A690C" }}>
-            <i>{this.state.dropdownOption}</i> PLS Metric
+            <i>{this.state.dropdownOption.replace(/_/g, ' ')}</i> PLS Metric
           </Typography>
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
@@ -997,7 +997,7 @@ class ReportOverview extends Component {
       const gridPlotWideRef_2 = (
         <div style={{ marginTop: "20px" }}>
           <Typography variant="h6" align="center" style={{ color: "#4A690C" }}>
-            <i>{this.state.dropdownOption}</i> Gaps
+            <i>{this.state.dropdownOption.replace(/_/g, ' ')}</i> Gaps
           </Typography>
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
@@ -1035,7 +1035,7 @@ class ReportOverview extends Component {
       const gridPlotWideRef_3 = (
         <div style={{ marginTop: "20px" }}>
           <Typography variant="h6" align="center" style={{ color: "#4A690C" }}>
-            <i>{this.state.dropdownOption}</i> SNPs
+            <i>{this.state.dropdownOption.replace(/_/g, ' ')}</i> SNPs
           </Typography>
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
