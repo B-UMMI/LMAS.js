@@ -7,6 +7,7 @@ import LamaLogo from "../images/lmas_logo_wide.jpg";
 // Material-UI ExpansionPanel components
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
+import AccordionSummary from '@material-ui/core/AccordionSummary';
 
 // Material UI Card components
 import Card from "@material-ui/core/Card";
@@ -37,6 +38,7 @@ import Link from "@material-ui/core/Link";
 
 // Material UI Icons
 import ErrorIcon from "@material-ui/icons/Error";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { red } from "@material-ui/core/colors";
 
 // Plotly.js
@@ -374,16 +376,16 @@ class ReportOverview extends Component {
 
     const aboutUs = (
       <div style={{ marginTop: "2%", marginBottom: "2%" }}>
-        <div style={{ display:'flex', justifyContent:'center' }}>
-            <Card style={{ maxWidth: 500, borderRadius: 0, boxShadow: "none" }}>
-              <CardMedia
-                component="img"
-                alt="Contemplative Lama"
-                //style={{ height: 200 }}
-                image={LamaLogo}
-                title="Lama"
-              />
-            </Card>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Card style={{ maxWidth: 500, borderRadius: 0, boxShadow: "none" }}>
+            <CardMedia
+              component="img"
+              alt="Contemplative Lama"
+              //style={{ height: 200 }}
+              image={LamaLogo}
+              title="Lama"
+            />
+          </Card>
         </div>
         <div style={{ marginTop: "2%", marginBottom: "2%" }}>
           <Typography>
@@ -449,6 +451,17 @@ class ReportOverview extends Component {
       <div>
         <div style={{ marginTop: "20px" }}>
           <Accordion defaultExpanded>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="overview-panel-content"
+              id="overview-panel"
+            >
+              <Typography
+                variant="h5"
+                style={{ color: "#4A690C" }}>
+                Summary Panel
+              </Typography>
+            </AccordionSummary>
             <AccordionDetails>
               <div style={{ width: "100%", height: "100%", flexGrow: 1 }}>
                 <div style={style.buttonBar}>
@@ -1087,6 +1100,18 @@ class ReportOverview extends Component {
       <div>
         <div style={{ marginTop: "20px" }}>
           <Accordion defaultExpanded>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="references-panel-content"
+              id="references-panel"
+            >
+              <Typography
+                variant="h5"
+                style={{ color: "#4A690C" }}>
+                Metrics Panel
+              </Typography>
+            </AccordionSummary>
+
             <AccordionDetails>
               <div
                 className={classesRE.mainPaper}
