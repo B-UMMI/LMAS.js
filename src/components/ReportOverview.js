@@ -1083,6 +1083,44 @@ class ReportOverview extends Component {
         </div>
       );
 
+      const gridPlotWideRef_4 = (
+        <div style={{ marginTop: "20px" }}>
+          <Typography variant="h6" align="center" style={{ color: "#4A690C" }}>
+            <i>{this.state.dropdownOption.replace(/_/g, ' ')}</i> Misassemblies
+          </Typography>
+          {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
+            this.state.dropdownOption
+          ].misassembly === "undefined" ? (
+              <div />
+            ) : (
+              <Plot
+                data={
+                  this.state.mainPlotData[this.state.buttonOption].PlotData[
+                    this.state.dropdownOption
+                  ].misassembly.data
+                }
+                layout={
+                  this.state.mainPlotData[this.state.buttonOption].PlotData[
+                    this.state.dropdownOption
+                  ].misassembly.layout
+                }
+                useResizeHandler={true}
+                style={{ width: "100%", height: "100%" }}
+                line={{
+                  width: 1,
+                }}
+              />
+            )}
+          <Typography align="center">
+            Location of misassembled blocks in the filtered assembly in comparison to the reference sequence,
+            per assembler. The top plot represents the histogram of the
+            cumulative number of positions of the misassembled blocks in the reference.
+            Data for assemblers who fail to produce sequences that align to the
+            reference aren't present.
+          </Typography>
+        </div>
+      );
+
       testAccordionMain = (
         <Aux>
           {dropdown}
@@ -1092,6 +1130,7 @@ class ReportOverview extends Component {
           <div>{gridPlotWideRef_1}</div>
           <div>{gridPlotWideRef_2}</div>
           <div>{gridPlotWideRef_3}</div>
+          <div>{gridPlotWideRef_4}</div>
         </Aux>
       );
     }
