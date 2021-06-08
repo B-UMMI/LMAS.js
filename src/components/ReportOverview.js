@@ -156,6 +156,9 @@ class ReportOverview extends Component {
         headerAlign: "center",
         align: "center",
         renderHeader: () => <strong>{"Container"}</strong>,
+        renderCell: (params) => (
+          <Link href={`https://hub.docker.com/r/${params.value.split(':')[0]}`} target="_blank" rel="noopener noreferrer">{params.value}</Link>
+        )
       },
       {
         field: "avgTime",
