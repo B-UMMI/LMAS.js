@@ -686,7 +686,7 @@ class ReportOverview extends Component {
                       <b>Assembler</b>
                     </TableCell>
                     <TableCell title="Longest single alignment between the assembly and the reference, relative to the reference length">
-                      <b>Contiguity</b>
+                      <b>LSA</b>
                     </TableCell>
                     <TableCell title="Ratio of the length of alignable assembled sequence to covered sequence on the reference">
                       <b>Multiplicity</b>
