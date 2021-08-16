@@ -633,7 +633,7 @@ class ReportOverview extends Component {
             Scatter plot for misassembled contigs per assembler. The y-axis
             represent the number of blocks the misassembled contig was broken
             into in the mapping process, and the x axis its size in basepairs.
-            Information of the type of misassembly is available as hoover text
+            Information of the type of misassembly is available as hover text
             for the type of misassembly. The box plot represents the
             distribution on contig size for all misassembled contigs.
           </Typography>
@@ -838,7 +838,7 @@ class ReportOverview extends Component {
               <Typography align="center">
                 Number of contigs per breath of coverage of the reference per
                 assembler. Data for assemblers who fail to produce sequences
-                that align to the reference aren't present.
+                that align to the reference are not present.
               </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -876,7 +876,7 @@ class ReportOverview extends Component {
                 Minimal number of contigs that cover <i>x</i> percent of the sequence
                 of the reference, ranging from 0 to 100, per assembler. Data for
                 assemblers who fail to produce sequences that align to the
-                reference aren't present.
+                reference are not present.
               </Typography>
             </Grid>
           </Grid>
@@ -928,7 +928,7 @@ class ReportOverview extends Component {
                 length or longer covers at least <i>x</i> percent of the total length
                 of the aligned assembled contigs, ranging from 0 to 100, per
                 assembler. Data for assemblers who fail to produce sequences
-                that align to the reference aren't present.
+                that align to the reference are not present.
               </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -967,7 +967,7 @@ class ReportOverview extends Component {
                 length or longer covers at least <i>x</i> percentage of the sequence of
                 the reference, ranging from 0 to 100, per assembler. Data for
                 assemblers who fail to produce sequences that align to the
-                reference aren't present.
+                reference are not present.
               </Typography>
             </Grid>
           </Grid>
@@ -1004,7 +1004,7 @@ class ReportOverview extends Component {
             )}
           <Typography align="center">
             Phred-like score per contig, per assembler. Data for assemblers
-            who fail to produce sequences that align to the reference aren't
+            who fail to produce sequences that align to the reference are not
             present.
           </Typography>
         </div>
@@ -1013,7 +1013,7 @@ class ReportOverview extends Component {
       const gridPlotWideRef_2 = (
         <div style={{ marginTop: "20px" }}>
           <Typography variant="h6" align="center" style={{ color: "#4A690C" }}>
-            <i>{this.state.dropdownOption.replace(/_/g, ' ')}</i> Gaps
+            <i>{this.state.dropdownOption.replace(/_/g, ' ')}</i> Non-Covered Bases
           </Typography>
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
@@ -1039,11 +1039,11 @@ class ReportOverview extends Component {
               />
             )}
           <Typography align="center">
-            Location of gaps in comparison to the reference sequence, per
-            assembler. Length of gap, in basepairs, is available as hoover text.
+            Location of non-covered bases in comparison to the reference sequence, per
+            assembler. Length of gap, in basepairs, is available as hover text.
             The top plot represents the histogram of the cumulative number of
             gaps per position in the reference. Data for assemblers who fail to
-            produce sequences that align to the reference aren't present.
+            produce sequences that align to the reference are not present.
           </Typography>
         </div>
       );
@@ -1051,7 +1051,7 @@ class ReportOverview extends Component {
       const gridPlotWideRef_3 = (
         <div style={{ marginTop: "20px" }}>
           <Typography variant="h6" align="center" style={{ color: "#4A690C" }}>
-            <i>{this.state.dropdownOption.replace(/_/g, ' ')}</i> SNPs
+            <i>{this.state.dropdownOption.replace(/_/g, ' ')}</i> Substitutions
           </Typography>
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
@@ -1081,7 +1081,7 @@ class ReportOverview extends Component {
             per assembler. The top plot represents the histogram of the
             cumulative number of substitutions per position in the reference.
             Data for assemblers who fail to produce sequences that align to the
-            reference aren't present.
+            reference are not present.
           </Typography>
         </div>
       );
@@ -1119,7 +1119,7 @@ class ReportOverview extends Component {
             per assembler. The top plot represents the histogram of the
             cumulative number of positions of the misassembled blocks in the reference.
             Data for assemblers who fail to produce sequences that align to the
-            reference aren't present.
+            reference are not present.
           </Typography>
         </div>
       );
