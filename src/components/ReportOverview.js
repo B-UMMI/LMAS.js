@@ -230,7 +230,7 @@ class ReportOverview extends Component {
                 <b>Original Assembly</b>
               </TableCell>
               <TableCell
-                colSpan={5}
+                colSpan={6}
                 align="center"
                 style={{ borderLeft: "1px solid rgba(224, 224, 224, 1)" }}
               >
@@ -286,6 +286,11 @@ class ReportOverview extends Component {
                 align="center">
                 <b>Misassembled contigs</b>
               </TableCell>
+              <TableCell
+                title="Percentage of mapped reads to the assembly"
+                align="center">
+                <b>Mapped reads (%)</b>
+              </TableCell>
               <TableCell title="Total of 'N's in assembly basepairs">
                 <b>#Ns</b>
               </TableCell>
@@ -319,6 +324,11 @@ class ReportOverview extends Component {
                   <TableCell align="right">{row.filtered.basepairs}</TableCell>
                   <TableCell align="right">{row.filtered.N50}</TableCell>
                   <TableCell align="right">{row.filtered.misassembled_contigs}</TableCell>
+                  <TableCell align="right">
+                    {row.filtered.mapped_reads !== 0
+                      ? row.filtered.mapped_reads.toFixed(4)
+                      : row.filtered.mapped_reads}
+                  </TableCell>
                   <TableCell align="right">{row.filtered.Ns}</TableCell>
                 </TableRow>
               )
