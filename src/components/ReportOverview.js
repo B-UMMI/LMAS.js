@@ -234,7 +234,7 @@ class ReportOverview extends Component {
                 align="center"
                 style={{ borderLeft: "1px solid rgba(224, 224, 224, 1)" }}
               >
-                <b>Contigs > {_minContigSize} bps</b>
+                <b>Contigs over {_minContigSize} bps</b>
               </TableCell>
             </TableRow>
             <TableRow>
@@ -305,8 +305,8 @@ class ReportOverview extends Component {
                     {row.original.contigs !== 0 ? (
                       ""
                     ) : (
-                        <ErrorIcon style={{ color: red[500] }} />
-                      )}
+                      <ErrorIcon style={{ color: red[500] }} />
+                    )}
                   </TableCell>
                   <TableCell align="right">{row.original.contigs}</TableCell>
                   <TableCell align="right">{row.original.basepairs}</TableCell>
@@ -403,59 +403,59 @@ class ReportOverview extends Component {
         <div style={{ marginTop: "2%", marginBottom: "2%" }}>
           <Typography>
             LMAS is an automated workflow enabling the benchmarking of traditional and metagenomic prokaryotic <i>de novo</i> assembly software using defined mock communities.
-          It's implemented in {" "}
+            It's implemented in {" "}
             <Link href="https://www.nextflow.io/" target="_blank" rel="noopener noreferrer">
               Nextflow
-          </Link>
-          , providing flexibility and ensure the transparency and reproducibility of the results. LMAS relies on the use of containers, such as {" "}
+            </Link>
+            , providing flexibility and ensure the transparency and reproducibility of the results. LMAS relies on the use of containers, such as {" "}
             <Link href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">
               Docker
-          </Link>
-          , for each assembler, allowing versions to be tracked and updated easily.  It can be deployed effortlessly in any UNIX-based system, from local machines to high-performance computing clusters.
-        </Typography>
+            </Link>
+            , for each assembler, allowing versions to be tracked and updated easily.  It can be deployed effortlessly in any UNIX-based system, from local machines to high-performance computing clusters.
+          </Typography>
           <br />
           <Typography>
             The LMAS workflow sourcecode is available on GitHub under {" "}
             <Link href="https://github.com/cimendes/LMAS" target="_blank" rel="noopener noreferrer">
               https://github.com/cimendes/LMAS
-          </Link>
-          and the report source code is available at {" "}
+            </Link>
+            and the report source code is available at {" "}
             <Link href="https://github.com/cimendes/lmas_report" target="_blank" rel="noopener noreferrer">
               https://github.com/cimendes/lmas_report
-          </Link>
-          . The documentation is available on ReadTheDocs at {" "}
+            </Link>
+            . The documentation is available on ReadTheDocs at {" "}
             <Link href="https://lmas.readthedocs.io" target="_blank" rel="noopener noreferrer">
               https://lmas.readthedocs.io
-          </Link>
+            </Link>
           </Typography>
           <br />
           <Typography>
             LMAS is developed at the {" "}
             <Link href="http://darwin.phyloviz.net/wiki/doku.php" target="_blank" rel="noopener noreferrer">
               Molecular Microbiology and Infection Unit (UMMI)
-          </Link>
+            </Link>
             {" "}at the {" "}
             <Link href="https://imm.medicina.ulisboa.pt/en/" target="_blank" rel="noopener noreferrer">
               Instituto de Medicina Molecular Joao Antunes
-          </Link>
-          , in collaboration with{" "}
+            </Link>
+            , in collaboration with{" "}
             <Link href="https://morangiladlab.com/" target="_blank" rel="noopener noreferrer">
               Microbiology, Advanced Genomics and Infection Control Applications Laboratory (MAGICAL)
-          </Link>
+            </Link>
             {" "}at the{" "}
             <Link href="https://in.bgu.ac.il/en/fohs/Pages/default.aspx" target="_blank" rel="noopener noreferrer">
               Faculty of Health Sciences, Ben-Gurion University of the Negev
-          </Link>
-          .{" "}
+            </Link>
+            .{" "}
           </Typography>
           <br />
           <Typography>
             This project is licensed under the {" "}
             <Link href="https://github.com/cimendes/LMAS/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">
               GPLv3 license
-          </Link>
-          .
-        </Typography>
+            </Link>
+            .
+          </Typography>
         </div>
       </div >
     );
@@ -749,8 +749,8 @@ class ReportOverview extends Component {
                         {row.aligned_contigs !== 0 ? (
                           ""
                         ) : (
-                            <ErrorIcon style={{ color: red[500] }} />
-                          )}
+                          <ErrorIcon style={{ color: red[500] }} />
+                        )}
                       </TableCell>
                       <TableCell align="right">
                         {row.contiguity !== 0
@@ -825,26 +825,26 @@ class ReportOverview extends Component {
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
               ].completness === "undefined" ? (
-                  <div />
-                ) : (
-                  <Plot
-                    data={
-                      this.state.mainPlotData[this.state.buttonOption].PlotData[
-                        this.state.dropdownOption
-                      ].completness.data
-                    }
-                    layout={
-                      this.state.mainPlotData[this.state.buttonOption].PlotData[
-                        this.state.dropdownOption
-                      ].completness.layout
-                    }
-                    useResizeHandler={true}
-                    style={{ width: "100%", height: "100%" }}
-                    line={{
-                      width: 1,
-                    }}
-                  />
-                )}
+                <div />
+              ) : (
+                <Plot
+                  data={
+                    this.state.mainPlotData[this.state.buttonOption].PlotData[
+                      this.state.dropdownOption
+                    ].completness.data
+                  }
+                  layout={
+                    this.state.mainPlotData[this.state.buttonOption].PlotData[
+                      this.state.dropdownOption
+                    ].completness.layout
+                  }
+                  useResizeHandler={true}
+                  style={{ width: "100%", height: "100%" }}
+                  line={{
+                    width: 1,
+                  }}
+                />
+              )}
               <Typography align="center">
                 Number of contigs per breath of coverage of the reference per
                 assembler. Data for assemblers who fail to produce sequences
@@ -862,26 +862,26 @@ class ReportOverview extends Component {
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
               ].lx === "undefined" ? (
-                  <div />
-                ) : (
-                  <Plot
-                    data={
-                      this.state.mainPlotData[this.state.buttonOption].PlotData[
-                        this.state.dropdownOption
-                      ].lx.data
-                    }
-                    layout={
-                      this.state.mainPlotData[this.state.buttonOption].PlotData[
-                        this.state.dropdownOption
-                      ].lx.layout
-                    }
-                    useResizeHandler={true}
-                    style={{ width: "100%", height: "100%" }}
-                    line={{
-                      width: 1,
-                    }}
-                  />
-                )}
+                <div />
+              ) : (
+                <Plot
+                  data={
+                    this.state.mainPlotData[this.state.buttonOption].PlotData[
+                      this.state.dropdownOption
+                    ].lx.data
+                  }
+                  layout={
+                    this.state.mainPlotData[this.state.buttonOption].PlotData[
+                      this.state.dropdownOption
+                    ].lx.layout
+                  }
+                  useResizeHandler={true}
+                  style={{ width: "100%", height: "100%" }}
+                  line={{
+                    width: 1,
+                  }}
+                />
+              )}
               <Typography align="center">
                 Minimal number of contigs that cover <i>x</i> percent of the sequence
                 of the reference, ranging from 0 to 100, per assembler. Data for
@@ -913,26 +913,26 @@ class ReportOverview extends Component {
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
               ].nax === "undefined" ? (
-                  <div />
-                ) : (
-                  <Plot
-                    data={
-                      this.state.mainPlotData[this.state.buttonOption].PlotData[
-                        this.state.dropdownOption
-                      ].nax.data
-                    }
-                    layout={
-                      this.state.mainPlotData[this.state.buttonOption].PlotData[
-                        this.state.dropdownOption
-                      ].nax.layout
-                    }
-                    useResizeHandler={true}
-                    style={{ width: "100%", height: "100%" }}
-                    line={{
-                      width: 1,
-                    }}
-                  />
-                )}
+                <div />
+              ) : (
+                <Plot
+                  data={
+                    this.state.mainPlotData[this.state.buttonOption].PlotData[
+                      this.state.dropdownOption
+                    ].nax.data
+                  }
+                  layout={
+                    this.state.mainPlotData[this.state.buttonOption].PlotData[
+                      this.state.dropdownOption
+                    ].nax.layout
+                  }
+                  useResizeHandler={true}
+                  style={{ width: "100%", height: "100%" }}
+                  line={{
+                    width: 1,
+                  }}
+                />
+              )}
               <Typography align="center">
                 Length for which the collection of all aligned contigs of that
                 length or longer covers at least <i>x</i> percent of the total length
@@ -952,26 +952,26 @@ class ReportOverview extends Component {
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
               ].ngx === "undefined" ? (
-                  <div />
-                ) : (
-                  <Plot
-                    data={
-                      this.state.mainPlotData[this.state.buttonOption].PlotData[
-                        this.state.dropdownOption
-                      ].ngx.data
-                    }
-                    layout={
-                      this.state.mainPlotData[this.state.buttonOption].PlotData[
-                        this.state.dropdownOption
-                      ].ngx.layout
-                    }
-                    useResizeHandler={true}
-                    style={{ width: "100%", height: "100%" }}
-                    line={{
-                      width: 1,
-                    }}
-                  />
-                )}
+                <div />
+              ) : (
+                <Plot
+                  data={
+                    this.state.mainPlotData[this.state.buttonOption].PlotData[
+                      this.state.dropdownOption
+                    ].ngx.data
+                  }
+                  layout={
+                    this.state.mainPlotData[this.state.buttonOption].PlotData[
+                      this.state.dropdownOption
+                    ].ngx.layout
+                  }
+                  useResizeHandler={true}
+                  style={{ width: "100%", height: "100%" }}
+                  line={{
+                    width: 1,
+                  }}
+                />
+              )}
               <Typography align="center">
                 Length for which the collection of all aligned contigs of that
                 length or longer covers at least <i>x</i> percentage of the sequence of
@@ -992,26 +992,26 @@ class ReportOverview extends Component {
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
           ].phred === "undefined" ? (
-              <div />
-            ) : (
-              <Plot
-                data={
-                  this.state.mainPlotData[this.state.buttonOption].PlotData[
-                    this.state.dropdownOption
-                  ].phred.data
-                }
-                layout={
-                  this.state.mainPlotData[this.state.buttonOption].PlotData[
-                    this.state.dropdownOption
-                  ].phred.layout
-                }
-                useResizeHandler={true}
-                style={{ width: "100%", height: "100%" }}
-                line={{
-                  width: 1,
-                }}
-              />
-            )}
+            <div />
+          ) : (
+            <Plot
+              data={
+                this.state.mainPlotData[this.state.buttonOption].PlotData[
+                  this.state.dropdownOption
+                ].phred.data
+              }
+              layout={
+                this.state.mainPlotData[this.state.buttonOption].PlotData[
+                  this.state.dropdownOption
+                ].phred.layout
+              }
+              useResizeHandler={true}
+              style={{ width: "100%", height: "100%" }}
+              line={{
+                width: 1,
+              }}
+            />
+          )}
           <Typography align="center">
             Phred-like score per contig, per assembler. Data for assemblers
             who fail to produce sequences that align to the reference are not
@@ -1028,26 +1028,26 @@ class ReportOverview extends Component {
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
           ].gaps === "undefined" ? (
-              <div />
-            ) : (
-              <Plot
-                data={
-                  this.state.mainPlotData[this.state.buttonOption].PlotData[
-                    this.state.dropdownOption
-                  ].gaps.data
-                }
-                layout={
-                  this.state.mainPlotData[this.state.buttonOption].PlotData[
-                    this.state.dropdownOption
-                  ].gaps.layout
-                }
-                useResizeHandler={true}
-                style={{ width: "100%", height: "100%" }}
-                line={{
-                  width: 1,
-                }}
-              />
-            )}
+            <div />
+          ) : (
+            <Plot
+              data={
+                this.state.mainPlotData[this.state.buttonOption].PlotData[
+                  this.state.dropdownOption
+                ].gaps.data
+              }
+              layout={
+                this.state.mainPlotData[this.state.buttonOption].PlotData[
+                  this.state.dropdownOption
+                ].gaps.layout
+              }
+              useResizeHandler={true}
+              style={{ width: "100%", height: "100%" }}
+              line={{
+                width: 1,
+              }}
+            />
+          )}
           <Typography align="center">
             Location of non-covered bases in comparison to the reference sequence, per
             assembler. Length of gap, in basepairs, is available as hover text.
@@ -1066,26 +1066,26 @@ class ReportOverview extends Component {
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
           ].snps === "undefined" ? (
-              <div />
-            ) : (
-              <Plot
-                data={
-                  this.state.mainPlotData[this.state.buttonOption].PlotData[
-                    this.state.dropdownOption
-                  ].snps.data
-                }
-                layout={
-                  this.state.mainPlotData[this.state.buttonOption].PlotData[
-                    this.state.dropdownOption
-                  ].snps.layout
-                }
-                useResizeHandler={true}
-                style={{ width: "100%", height: "100%" }}
-                line={{
-                  width: 1,
-                }}
-              />
-            )}
+            <div />
+          ) : (
+            <Plot
+              data={
+                this.state.mainPlotData[this.state.buttonOption].PlotData[
+                  this.state.dropdownOption
+                ].snps.data
+              }
+              layout={
+                this.state.mainPlotData[this.state.buttonOption].PlotData[
+                  this.state.dropdownOption
+                ].snps.layout
+              }
+              useResizeHandler={true}
+              style={{ width: "100%", height: "100%" }}
+              line={{
+                width: 1,
+              }}
+            />
+          )}
           <Typography align="center">
             Location of substitutions in comparison to the reference sequence,
             per assembler. The top plot represents the histogram of the
@@ -1104,26 +1104,26 @@ class ReportOverview extends Component {
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
           ].misassembly === "undefined" ? (
-              <div />
-            ) : (
-              <Plot
-                data={
-                  this.state.mainPlotData[this.state.buttonOption].PlotData[
-                    this.state.dropdownOption
-                  ].misassembly.data
-                }
-                layout={
-                  this.state.mainPlotData[this.state.buttonOption].PlotData[
-                    this.state.dropdownOption
-                  ].misassembly.layout
-                }
-                useResizeHandler={true}
-                style={{ width: "100%", height: "100%" }}
-                line={{
-                  width: 1,
-                }}
-              />
-            )}
+            <div />
+          ) : (
+            <Plot
+              data={
+                this.state.mainPlotData[this.state.buttonOption].PlotData[
+                  this.state.dropdownOption
+                ].misassembly.data
+              }
+              layout={
+                this.state.mainPlotData[this.state.buttonOption].PlotData[
+                  this.state.dropdownOption
+                ].misassembly.layout
+              }
+              useResizeHandler={true}
+              style={{ width: "100%", height: "100%" }}
+              line={{
+                width: 1,
+              }}
+            />
+          )}
           <Typography align="center">
             Location of misassembled blocks in the filtered assembly in comparison to the reference sequence,
             per assembler. The top plot represents the histogram of the
