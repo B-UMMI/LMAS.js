@@ -230,7 +230,7 @@ class ReportOverview extends Component {
                 <b>Original Assembly</b>
               </TableCell>
               <TableCell
-                colSpan={6}
+                colSpan={7}
                 align="center"
                 style={{ borderLeft: "1px solid rgba(224, 224, 224, 1)" }}
               >
@@ -287,6 +287,11 @@ class ReportOverview extends Component {
                 <b>Misassembled contigs</b>
               </TableCell>
               <TableCell
+                title="Number of missassembly events in the assembly"
+                align="center">
+                <b>Misassembly events</b>
+              </TableCell>
+              <TableCell
                 title="Percentage of mapped reads to the assembly"
                 align="center">
                 <b>Mapped reads (%)</b>
@@ -324,6 +329,7 @@ class ReportOverview extends Component {
                   <TableCell align="right">{row.filtered.basepairs}</TableCell>
                   <TableCell align="right">{row.filtered.N50}</TableCell>
                   <TableCell align="right">{row.filtered.misassembled_contigs}</TableCell>
+                  <TableCell align="right">{row.filtered.misassembly_events}</TableCell>
                   <TableCell align="right">
                     {row.filtered.mapped_reads !== 0
                       ? row.filtered.mapped_reads.toFixed(4)
@@ -722,6 +728,9 @@ class ReportOverview extends Component {
                     <TableCell title="Number of aligned contigs with misassemblies">
                       <b>Misassembled contigs</b>
                     </TableCell>
+                    <TableCell title="Number of misassembly events in the aligned contigs">
+                      <b>Misassembly events</b>
+                    </TableCell>
                     <TableCell title="Minimal number of contigs that cover 90% of the sequence of the reference">
                       <b>L90</b>
                     </TableCell>
@@ -790,6 +799,9 @@ class ReportOverview extends Component {
                       <TableCell align="right">{row.aligned_contigs}</TableCell>
                       <TableCell align="right">
                         {row.misassembled_contigs}
+                      </TableCell>
+                      <TableCell align="right">
+                        {row.misassembly_events}
                       </TableCell>
                       <TableCell align="right">{row.L90}</TableCell>
                       <TableCell align="right">{row.NA50}</TableCell>
