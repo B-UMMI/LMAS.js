@@ -837,7 +837,14 @@ class ReportOverview extends Component {
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
               ].completness === "undefined" ? (
-                <div />
+                <div >
+                  <Typography
+                    variant="h5"
+                    align="center"
+                  >
+                    None Found
+                  </Typography>
+                </div>
               ) : (
                 <Plot
                   data={
@@ -874,7 +881,14 @@ class ReportOverview extends Component {
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
               ].lx === "undefined" ? (
-                <div />
+                <div >
+                  <Typography
+                    variant="h5"
+                    align="center"
+                  >
+                    None Found
+                  </Typography>
+                </div>
               ) : (
                 <Plot
                   data={
@@ -925,7 +939,14 @@ class ReportOverview extends Component {
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
               ].nax === "undefined" ? (
-                <div />
+                <div >
+                  <Typography
+                    variant="h5"
+                    align="center"
+                  >
+                    None Found
+                  </Typography>
+                </div>
               ) : (
                 <Plot
                   data={
@@ -964,7 +985,14 @@ class ReportOverview extends Component {
               {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
                 this.state.dropdownOption
               ].ngx === "undefined" ? (
-                <div />
+                <div >
+                  <Typography
+                    variant="h5"
+                    align="center"
+                  >
+                    None Found
+                  </Typography>
+                </div>
               ) : (
                 <Plot
                   data={
@@ -1004,7 +1032,14 @@ class ReportOverview extends Component {
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
           ].phred === "undefined" ? (
-            <div />
+            <div >
+              <Typography
+                variant="h5"
+                align="center"
+              >
+                None Found
+              </Typography>
+            </div>
           ) : (
             <Plot
               data={
@@ -1040,7 +1075,14 @@ class ReportOverview extends Component {
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
           ].gaps === "undefined" ? (
-            <div />
+            <div >
+              <Typography
+                variant="h5"
+                align="center"
+              >
+                None Found
+              </Typography>
+            </div>
           ) : (
             <Plot
               data={
@@ -1078,7 +1120,14 @@ class ReportOverview extends Component {
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
           ].snps === "undefined" ? (
-            <div />
+            <div >
+              <Typography
+                variant="h5"
+                align="center"
+              >
+                None Found
+              </Typography>
+            </div>
           ) : (
             <Plot
               data={
@@ -1116,7 +1165,14 @@ class ReportOverview extends Component {
           {typeof this.state.mainPlotData[this.state.buttonOption].PlotData[
             this.state.dropdownOption
           ].misassembly === "undefined" ? (
-            <div />
+            <div >
+              <Typography
+                variant="h5"
+                align="center"
+              >
+                None Found
+              </Typography>
+            </div>
           ) : (
             <Plot
               data={
