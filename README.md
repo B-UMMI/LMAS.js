@@ -28,6 +28,10 @@ To recreate it, simply run:
 
     conda env create -f environment.yml
 
+Additionally, the js depedencies need to ne installed. Run in the root of the repo:
+
+    npm install
+
 ### Compile main.js
 
 Run in the root of the repo:
