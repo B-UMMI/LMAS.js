@@ -21,14 +21,13 @@ This project uses `npx webpack` to compile a standalone `main.js` file to be int
 
 ### Re-create conda env
 
-The necessary dependencies for the project are provided in the [environment.yml](environment.yml) file available 
-in this repo.
+The necessary dependencies for the project are provided in the [environment.yml](environment.yml) file available in this repo.
 
 To recreate it, simply run:
 
     conda env create -f environment.yml
 
-Additionally, the js depedencies need to ne installed. Run in the root of the repo:
+Additionally, the js dependencies need to be installed. Run in the root of the repo:
 
     npm install
 
@@ -38,8 +37,7 @@ Run in the root of the repo:
 
     npx webpack 
 
-This creates the `main.js` in the `dist/` directory where the command was run. It expects the `index.html` file in the 
-same location, created by the LMAS workflow. 
+This creates the `main.js` in the `dist/` directory where the command was run. It expects the `index.html` file in the same location, created by the LMAS workflow.
 
 ## Citation and Contacts
 

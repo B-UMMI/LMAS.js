@@ -746,6 +746,9 @@ class ReportOverview extends Component {
                     <TableCell title="Total of 'N's in basepairs aligned to to the reference">
                       <b>#Ns</b>
                     </TableCell>
+                    <TableCell title="Total of SNPs in basepairs aligned to to the reference">
+                      <b>#SNPs</b>
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -808,6 +811,7 @@ class ReportOverview extends Component {
                       <TableCell align="right">{row.NG50}</TableCell>
                       <TableCell align="right">{row.aligned_basepairs}</TableCell>
                       <TableCell align="right">{row.Ns}</TableCell>
+                      <TableCell align="right">{row.snps}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
